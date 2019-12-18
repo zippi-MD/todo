@@ -15,6 +15,7 @@
 		D482DF9C239E0DC800C18B82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D482DF9A239E0DC800C18B82 /* LaunchScreen.storyboard */; };
 		D482DFA5239E1AE300C18B82 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DFA4239E1AE300C18B82 /* Todo.swift */; };
 		D4D50EB523A9D18D0043E1FB /* ViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D50EB423A9D18D0043E1FB /* ViewController+DataSource.swift */; };
+		D4D50EB723A9D5680043E1FB /* ViewController+TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D50EB623A9D5680043E1FB /* ViewController+TableDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D482DF9D239E0DC800C18B82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D482DFA4239E1AE300C18B82 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		D4D50EB423A9D18D0043E1FB /* ViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+DataSource.swift"; sourceTree = "<group>"; };
+		D4D50EB623A9D5680043E1FB /* ViewController+TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+TableDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				D482DF93239E0DC700C18B82 /* ViewController.swift */,
 				D4D50EB423A9D18D0043E1FB /* ViewController+DataSource.swift */,
+				D4D50EB623A9D5680043E1FB /* ViewController+TableDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				D4D50EB523A9D18D0043E1FB /* ViewController+DataSource.swift in Sources */,
 				D482DF94239E0DC700C18B82 /* ViewController.swift in Sources */,
+				D4D50EB723A9D5680043E1FB /* ViewController+TableDelegate.swift in Sources */,
 				D482DF90239E0DC700C18B82 /* AppDelegate.swift in Sources */,
 				D482DF92239E0DC700C18B82 /* SceneDelegate.swift in Sources */,
 				D482DFA5239E1AE300C18B82 /* Todo.swift in Sources */,

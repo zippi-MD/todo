@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         table.dataSource = self
+        table.delegate = self
+        
     }
 
 
