@@ -12,9 +12,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var table: UITableView!
     
+    let todoCellIdentifier: String = "basicTodoCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        table.dataSource = self
     }
 
 
