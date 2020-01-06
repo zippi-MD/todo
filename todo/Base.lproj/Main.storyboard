@@ -78,6 +78,38 @@
             </objects>
             <point key="canvasLocation" x="857" y="91"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="hYG-BM-VvZ">
+            <objects>
+                <viewController id="PbG-KW-01o" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E1F-KJ-UXI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
+                                <rect key="frame" x="0.0" y="124" width="414" height="738"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oQy-v7-OeB">
+                                <rect key="frame" x="141.5" y="74" width="131" height="32"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oQy-v7-OeB" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="fBQ-uc-pfp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8ZC-tY-1uZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZUR-mB-9hB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1776.8115942028987" y="90.401785714285708"/>
+        </scene>
         <!--My #'s-->
         <scene sceneID="dM2-MN-gIx">
             <objects>
