@@ -155,7 +155,7 @@
         <!--My #'s-->
         <scene sceneID="dM2-MN-gIx">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="kJQ-TN-r1e" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="kJQ-TN-r1e" customClass="TodoTagsTableViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WxX-Uf-Q1t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,6 +178,9 @@
                     <navigationItem key="navigationItem" title="My #'s" id="grq-n3-E0k">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="gear" catalog="system" id="cH7-iW-Ve5"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="table" destination="WxX-Uf-Q1t" id="7NB-kd-BhD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXF-v1-Xwb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
