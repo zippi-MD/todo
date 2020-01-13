@@ -15,6 +15,7 @@ class AddTodo: UIView {
     
     @IBOutlet weak var todoTextView: UITextView!
     
+    var todoTag: String?
     
     override init(frame: CGRect) {
        super.init(frame: frame)
@@ -33,12 +34,35 @@ class AddTodo: UIView {
         containerView.frame = bounds
         containerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         alignTextVerticallyInContainer()
+        todoTextView.delegate = self
     }
     
     func alignTextVerticallyInContainer() {
-    var topCorrect = (todoTextView.bounds.size.height - todoTextView.contentSize.height * todoTextView.zoomScale) / 2
-            topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
-    todoTextView.contentInset.top = topCorrect
-        }
+        var topCorrect = (todoTextView.bounds.size.height - todoTextView.contentSize.height * todoTextView.zoomScale) / 2
+        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
+        todoTextView.contentInset.top = topCorrect
+    }
     
+}
+
+extension AddTodo: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        
+        let text = textView.text ?? ""
+        let cursorLocation = textView.selectedRange.location
+        
+        if let location = getLocationOfTagFrom(text, beginningWith: "#") {
+            let attributed = getHighlightedTextFor(text, withLocation: location, color: UIColor.systemPink)
+            todoTag = getTagFrom(attributed, tagLocation: location)
+            textView.attributedText = attributed
+        }
+        else {
+            todoTag = nil
+        }
+        
+        textView.selectedRange = NSRange(location: cursorLocation, length: 0)
+        textView.textAlignment = .center
+        alignTextVerticallyInContainer()
+        
+    }
 }
