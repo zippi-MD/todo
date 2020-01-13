@@ -15,6 +15,7 @@ class AddTodo: UIView {
     
     @IBOutlet weak var todoTextView: UITextView!
     
+    var todoTag: String?
     
     override init(frame: CGRect) {
        super.init(frame: frame)
