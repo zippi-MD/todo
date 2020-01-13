@@ -45,3 +45,8 @@ func getHighlightedTextFor(_ string: String, withLocation location: NSRange, col
     return attributed
     
 }
+
+func getTagFrom(_ string: NSMutableAttributedString, tagLocation location: NSRange) -> String {
+    let tag = string.attributedSubstring(from: location)
+    return tag.string
+}
