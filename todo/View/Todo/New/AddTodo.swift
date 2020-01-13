@@ -37,9 +37,9 @@ class AddTodo: UIView {
     }
     
     func alignTextVerticallyInContainer() {
-    var topCorrect = (todoTextView.bounds.size.height - todoTextView.contentSize.height * todoTextView.zoomScale) / 2
-            topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
-    todoTextView.contentInset.top = topCorrect
-        }
+        var topCorrect = (todoTextView.bounds.size.height - todoTextView.contentSize.height * todoTextView.zoomScale) / 2
+        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
+        todoTextView.contentInset.top = topCorrect
+    }
     
 }
