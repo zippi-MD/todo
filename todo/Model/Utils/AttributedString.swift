@@ -40,6 +40,7 @@ func getHighlightedTextFor(_ string: String, withLocation location: NSRange, col
     
     let attributed = NSMutableAttributedString(string: string)
     attributed.addAttributes([.backgroundColor: color], range: location)
+    attributed.addAttributes([.foregroundColor: UIColor.white], range: location)
     
     return attributed
     
