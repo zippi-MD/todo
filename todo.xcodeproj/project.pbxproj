@@ -26,6 +26,7 @@
 		D48CE54123C5A2C400BD90E4 /* TodosDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CE54023C5A2C400BD90E4 /* TodosDetailViewController.swift */; };
 		D49F0C2023CC28AC004B4910 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0C1F23CC28AC004B4910 /* Toolbar.swift */; };
 		D49F0C2223CC28E0004B4910 /* Toolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49F0C2123CC28E0004B4910 /* Toolbar.xib */; };
+		D49F0C2423CD8A3C004B4910 /* KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */; };
 		D4A7D04E23C9323E001C8E37 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7D04D23C9323E001C8E37 /* AttributedString.swift */; };
 		D4D50EB523A9D18D0043E1FB /* ViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D50EB423A9D18D0043E1FB /* ViewController+DataSource.swift */; };
 		D4D50EB723A9D5680043E1FB /* ViewController+TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D50EB623A9D5680043E1FB /* ViewController+TableDelegate.swift */; };
@@ -53,6 +54,7 @@
 		D48CE54023C5A2C400BD90E4 /* TodosDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosDetailViewController.swift; sourceTree = "<group>"; };
 		D49F0C1F23CC28AC004B4910 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		D49F0C2123CC28E0004B4910 /* Toolbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Toolbar.xib; sourceTree = "<group>"; };
+		D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEvents.swift; sourceTree = "<group>"; };
 		D4A7D04D23C9323E001C8E37 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D4D50EB423A9D18D0043E1FB /* ViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+DataSource.swift"; sourceTree = "<group>"; };
 		D4D50EB623A9D5680043E1FB /* ViewController+TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+TableDelegate.swift"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				D4A7D04D23C9323E001C8E37 /* AttributedString.swift */,
+				D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				D43C395B23C4557200560812 /* Constants.swift in Sources */,
 				D4D50EB523A9D18D0043E1FB /* ViewController+DataSource.swift in Sources */,
 				D48CE53D23C5958F00BD90E4 /* AddTodo.swift in Sources */,
+				D49F0C2423CD8A3C004B4910 /* KeyboardEvents.swift in Sources */,
 				D43C394E23C448AF00560812 /* TodoTagTableViewHeader.swift in Sources */,
 				D482DF94239E0DC700C18B82 /* ViewController.swift in Sources */,
 				D4D50EB723A9D5680043E1FB /* ViewController+TableDelegate.swift in Sources */,
@@ -429,7 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27MUBRMHKJ;
+				DEVELOPMENT_TEAM = 59JWRUY5S9;
 				INFOPLIST_FILE = todo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,7 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27MUBRMHKJ;
+				DEVELOPMENT_TEAM = 59JWRUY5S9;
 				INFOPLIST_FILE = todo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
