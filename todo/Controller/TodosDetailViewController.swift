@@ -10,21 +10,64 @@ import UIKit
 
 class TodosDetailViewController: UIViewController {
 
+    
+    @IBOutlet weak var toolbarView: Toolbar!
+    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+    
+    let keyboardHandler = KeyboardEvents()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        keyboardHandler.registerForKeyboardEvents()
+        keyboardHandler.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardHandler.unregisterFromKeyboardEvents()
     }
-    */
 
+}
+
+// MARK: - Handle Keyboard Events
+extension TodosDetailViewController: KeyboardHandlingDelegate {
+    func keyboardWillShow(_ notification: Notification) {
+        
+        toolbarView.isHidden = false
+        toolbarView.alpha = 0
+        
+        let keyboardSize = notification.keyboardSize
+        
+        if let keyboardHeight = keyboardSize?.height, let animationDuration = notification.keyboardAnimationDuration {
+            UIView.animate(withDuration: animationDuration) {
+                self.toolbarView.alpha = 1
+                self.toolbarBottomConstraint.constant = keyboardHeight - 35.0
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+    }
+    
+    func keyboardDidShow(_ notification: Notification) {
+        
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        
+    }
+    
+    func keyboardDidHide(_ notification: Notification) {
+        
+    }
+    
+    func keyboardWillChangeFrame(_ notification: Notification) {
+        
+    }
+    
+    func keyboardDidChangeFrame(_ notification: Notification) {
+        
+    }
+    
+    
 }
