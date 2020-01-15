@@ -71,28 +71,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
-                                <rect key="frame" x="0.0" y="164" width="375" height="414"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="750" id="hcK-i1-HEi"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="hcK-i1-HEi"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="hcK-i1-HEi"/>
-                                    </mask>
-                                </variation>
-                            </tableView>
-                            <view contentMode="scaleToFill" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="290" width="375" height="232"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oQy-v7-OeB">
                                 <rect key="frame" x="122" y="113" width="131" height="32"/>
                                 <segments>
@@ -109,7 +87,17 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                                 <variation key="widthClass=regular" hidden="YES"/>
+                                <connections>
+                                    <action selector="activateAddTodo:" destination="PbG-KW-01o" eventType="touchUpInside" id="PtB-OD-gpN"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
+                                <rect key="frame" x="8" y="579" width="375" height="120"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="9zU-kf-6c7"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pxo-Lf-XcJ" customClass="Toolbar" customModule="todo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="668" width="375" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -117,21 +105,41 @@
                                     <constraint firstAttribute="height" constant="60" id="7Dk-Ds-PFd"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
+                                <rect key="frame" x="0.0" y="164" width="375" height="314"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="750" id="hcK-i1-HEi"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hcK-i1-HEi"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="hcK-i1-HEi"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="0db-gJ-qEe"/>
                             <constraint firstItem="oQy-v7-OeB" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" constant="25" id="4SS-k6-A6K"/>
                             <constraint firstItem="oQy-v7-OeB" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="BBB-aH-P7W"/>
+                            <constraint firstItem="uU5-cD-dnC" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" constant="8" id="FdZ-ZT-0Ty"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="Pxo-Lf-XcJ" secondAttribute="bottom" constant="50" id="Lsv-sl-G9h"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="NoK-k1-dSU"/>
                             <constraint firstItem="biY-Rd-OCs" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" id="Sh9-zs-65h"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="biY-Rd-OCs" secondAttribute="trailing" constant="20" id="SvZ-NR-asA"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="trailing" secondItem="8ZC-tY-1uZ" secondAttribute="trailing" id="X7T-md-Dx6"/>
-                            <constraint firstItem="PTx-ao-2GX" firstAttribute="bottom" secondItem="8ZC-tY-1uZ" secondAttribute="bottom" constant="-200" id="f3L-26-XIR"/>
+                            <constraint firstItem="PTx-ao-2GX" firstAttribute="bottom" secondItem="8ZC-tY-1uZ" secondAttribute="bottom" constant="-300" id="f3L-26-XIR"/>
+                            <constraint firstItem="uU5-cD-dnC" firstAttribute="trailing" secondItem="8ZC-tY-1uZ" secondAttribute="trailing" constant="8" id="fcB-K4-WOx"/>
                             <constraint firstItem="Pxo-Lf-XcJ" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="jni-gq-yBY"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="Pxo-Lf-XcJ" secondAttribute="trailing" id="lV2-tG-0V0"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="top" secondItem="oQy-v7-OeB" secondAttribute="bottom" constant="20" id="sXy-hv-ZBO"/>
+                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="uU5-cD-dnC" secondAttribute="bottom" constant="79" id="xAH-Kv-Gse"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8ZC-tY-1uZ"/>
                         <variation key="default">
@@ -148,7 +156,9 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="toolbarBottomConstraint" destination="Lsv-sl-G9h" id="tz6-In-5Tw"/>
+                        <outlet property="addTodoBottomConstraint" destination="xAH-Kv-Gse" id="3be-FM-GwC"/>
+                        <outlet property="addTodoView" destination="uU5-cD-dnC" id="4l0-CP-0f0"/>
+                        <outlet property="toolbarBottomConstraint" destination="Lsv-sl-G9h" id="IcW-sV-SPx"/>
                         <outlet property="toolbarView" destination="Pxo-Lf-XcJ" id="oyO-Rb-ZVB"/>
                     </connections>
                 </viewController>
