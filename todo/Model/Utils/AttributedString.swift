@@ -36,9 +36,27 @@ func getLocationOfTagFrom(_ string: String, beginningWith tagIdentifier: String)
 }
 
 
-func getHighlightedTextFor(_ string: String, withLocation location: NSRange, color: UIColor) -> NSMutableAttributedString {
+func getHighlightedTextFor(_ string: String, withLocation location: NSRange, color: UIColor, wide: Bool = false) -> NSMutableAttributedString {
     
     let attributed = NSMutableAttributedString(string: string)
+    
+    if wide {
+        var textToHighlight = NSMutableAttributedString(string: attributed.attributedSubstring(from: location).string)
+        textToHighlight.insert(NSAttributedString(string: " "), at: 0)
+        textToHighlight.insert(NSAttributedString(string: " "), at: textToHighlight.length)
+    
+        let rangeToHighlight = NSRange(location: 0, length: textToHighlight.length)
+    
+        attributed.deleteCharacters(in: location)
+        
+        textToHighlight.addAttributes([.backgroundColor: color], range: rangeToHighlight)
+        textToHighlight.addAttributes([.foregroundColor: UIColor.white], range: rangeToHighlight)
+        
+        attributed.insert(textToHighlight, at: location.lowerBound)
+        
+        return attributed
+    }
+    
     attributed.addAttributes([.backgroundColor: color], range: location)
     attributed.addAttributes([.foregroundColor: UIColor.white], range: location)
     
