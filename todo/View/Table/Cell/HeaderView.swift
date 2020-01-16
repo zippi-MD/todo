@@ -28,8 +28,7 @@ class HeaderView: UIView {
     var headerTag: String = "" {
         willSet {
             if var location = getLocationOfTagFrom(newValue, beginningWith: "#") {
-                location.length = location.length + 1
-                let attributed = getHighlightedTextFor(newValue, withLocation: location, color: headerTagColor)
+                let attributed = getHighlightedTextFor(newValue, withLocation: location, color: headerTagColor, wide: true)
                 tagLabel.attributedText = attributed
             }
         }
