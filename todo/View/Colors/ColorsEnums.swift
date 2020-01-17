@@ -21,3 +21,12 @@ enum TagBackgroundColors: String {
     case TagRed1 = "Tag-Red-1"
     case TagYellow1 = "Tag-Yellow-1"
 }
+
+enum TodoCellColors: String {
+    case CellBackground = "Cell-Background"
+    case CellLabelBackground = "Cell-LabelBackground"
+}
+
+enum TodoHeaderColor: String {
+    case HeaderBackground
+}
