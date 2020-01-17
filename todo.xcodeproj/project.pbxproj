@@ -14,6 +14,7 @@
 		D43C395823C452B000560812 /* TodoTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C395623C452B000560812 /* TodoTagTableViewCell.swift */; };
 		D43C395923C452B000560812 /* TodoTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43C395723C452B000560812 /* TodoTagTableViewCell.xib */; };
 		D43C395B23C4557200560812 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C395A23C4557200560812 /* Constants.swift */; };
+		D462786223D209A800BCBB4D /* TagsBackgroundColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D462786123D209A800BCBB4D /* TagsBackgroundColors.xcassets */; };
 		D482DF90239E0DC700C18B82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DF8F239E0DC700C18B82 /* AppDelegate.swift */; };
 		D482DF92239E0DC700C18B82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DF91239E0DC700C18B82 /* SceneDelegate.swift */; };
 		D482DF94239E0DC700C18B82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DF93239E0DC700C18B82 /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		D43C395623C452B000560812 /* TodoTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTagTableViewCell.swift; sourceTree = "<group>"; };
 		D43C395723C452B000560812 /* TodoTagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTagTableViewCell.xib; sourceTree = "<group>"; };
 		D43C395A23C4557200560812 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D462786123D209A800BCBB4D /* TagsBackgroundColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TagsBackgroundColors.xcassets; sourceTree = "<group>"; };
 		D482DF8C239E0DC700C18B82 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D482DF8F239E0DC700C18B82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D482DF91239E0DC700C18B82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 				D43C395723C452B000560812 /* TodoTagTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D462786023D2081B00BCBB4D /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				D462786123D209A800BCBB4D /* TagsBackgroundColors.xcassets */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		D482DF83239E0DC700C18B82 = {
@@ -195,6 +205,7 @@
 		D4E9D16B23C444D4008B570A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D462786023D2081B00BCBB4D /* Colors */,
 				D48CE53A23C594AB00BD90E4 /* Todo */,
 				D4E9D16E23C445AD008B570A /* Table */,
 			);
@@ -309,6 +320,7 @@
 				D48CE53F23C5959E00BD90E4 /* AddTodo.xib in Resources */,
 				D4ED92E223D01B7700894E90 /* TodoTableViewCell.xib in Resources */,
 				D43C395923C452B000560812 /* TodoTagTableViewCell.xib in Resources */,
+				D462786223D209A800BCBB4D /* TagsBackgroundColors.xcassets in Resources */,
 				D43C395023C448C000560812 /* TodoTagTableViewHeader.xib in Resources */,
 				D4ED92D123CE2DA400894E90 /* TodoDatePicker.xib in Resources */,
 				D4ED92D723CED6B100894E90 /* HeaderView.xib in Resources */,
