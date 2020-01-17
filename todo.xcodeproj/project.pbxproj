@@ -15,6 +15,7 @@
 		D43C395923C452B000560812 /* TodoTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43C395723C452B000560812 /* TodoTagTableViewCell.xib */; };
 		D43C395B23C4557200560812 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C395A23C4557200560812 /* Constants.swift */; };
 		D462786223D209A800BCBB4D /* TagsBackgroundColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D462786123D209A800BCBB4D /* TagsBackgroundColors.xcassets */; };
+		D462786423D23D5700BCBB4D /* TagBackgroundColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D462786323D23D5700BCBB4D /* TagBackgroundColors.swift */; };
 		D482DF90239E0DC700C18B82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DF8F239E0DC700C18B82 /* AppDelegate.swift */; };
 		D482DF92239E0DC700C18B82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DF91239E0DC700C18B82 /* SceneDelegate.swift */; };
 		D482DF94239E0DC700C18B82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482DF93239E0DC700C18B82 /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 		D43C395723C452B000560812 /* TodoTagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTagTableViewCell.xib; sourceTree = "<group>"; };
 		D43C395A23C4557200560812 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D462786123D209A800BCBB4D /* TagsBackgroundColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TagsBackgroundColors.xcassets; sourceTree = "<group>"; };
+		D462786323D23D5700BCBB4D /* TagBackgroundColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBackgroundColors.swift; sourceTree = "<group>"; };
 		D482DF8C239E0DC700C18B82 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D482DF8F239E0DC700C18B82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D482DF91239E0DC700C18B82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				D462786123D209A800BCBB4D /* TagsBackgroundColors.xcassets */,
+				D462786323D23D5700BCBB4D /* TagBackgroundColors.swift */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				D482DF92239E0DC700C18B82 /* SceneDelegate.swift in Sources */,
 				D49F0C2023CC28AC004B4910 /* Toolbar.swift in Sources */,
 				D4A7D04E23C9323E001C8E37 /* AttributedString.swift in Sources */,
+				D462786423D23D5700BCBB4D /* TagBackgroundColors.swift in Sources */,
 				D482DFA5239E1AE300C18B82 /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
