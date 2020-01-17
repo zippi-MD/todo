@@ -16,6 +16,8 @@ class TodosDetailViewController: UIViewController {
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var addTodoBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var detailTableView: UITableView!
+    
     let keyboardHandler = KeyboardEvents()
     
     var actualTodoDetailState: TodoState = .discard
@@ -24,8 +26,11 @@ class TodosDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardHandler.registerForKeyboardEvents()
+        
         keyboardHandler.delegate = self
         toolbarView.delegate = self
+        detailTableView.delegate = self
+        detailTableView.dataSource = self
     }
     
     
@@ -33,6 +38,7 @@ class TodosDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         keyboardHandler.unregisterFromKeyboardEvents()
     }
+    
     @IBAction func activateAddTodo(_ sender: Any) {
         actualTodoDetailState = .present
         let animationDuration: TimeInterval = 0.25
