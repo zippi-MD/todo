@@ -35,6 +35,12 @@ class AddTodo: UIView {
         containerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         alignTextVerticallyInContainer()
         todoTextView.delegate = self
+        setupUI()
+    }
+    
+    func setupUI(){
+        todoBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        todoTextView.layer.cornerRadius = Constants.TodoCornerRadius
     }
     
     func alignTextVerticallyInContainer() {
