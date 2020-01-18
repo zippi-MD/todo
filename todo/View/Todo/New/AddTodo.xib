@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -17,21 +17,21 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="687" height="107"/>
+            <rect key="frame" x="0.0" y="0.0" width="735" height="323"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKI-cb-KoO">
-                    <rect key="frame" x="17" y="16" width="653" height="75"/>
+                    <rect key="frame" x="18.5" y="48.5" width="698" height="226"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3PA-Tr-5IE">
-                            <rect key="frame" x="16.5" y="7.5" width="620" height="60"/>
+                            <rect key="frame" x="17.5" y="22.5" width="663" height="181"/>
                             <color key="backgroundColor" name="Cell-Label-Background"/>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
-                    <color key="backgroundColor" name="Cell-Background"/>
+                    <color key="backgroundColor" name="Toolbar-Background"/>
                     <constraints>
                         <constraint firstItem="3PA-Tr-5IE" firstAttribute="centerY" secondItem="nKI-cb-KoO" secondAttribute="centerY" id="Jg1-Iu-kXz"/>
                         <constraint firstItem="3PA-Tr-5IE" firstAttribute="width" secondItem="nKI-cb-KoO" secondAttribute="width" multiplier="0.95" id="QEp-wE-M2f"/>
@@ -48,15 +48,15 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="335.50724637681162" y="-123.54910714285714"/>
+            <point key="canvasLocation" x="370.28985507246381" y="-51.227678571428569"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="Cell-Background">
-            <color red="0.8901960784313725" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Cell-Label-Background">
             <color red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Toolbar-Background">
+            <color red="0.65098039215686276" green="0.8901960784313725" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

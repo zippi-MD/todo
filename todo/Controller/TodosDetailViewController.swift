@@ -66,10 +66,13 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
         let keyboardSize = notification.keyboardSize
         
         if let keyboardHeight = keyboardSize?.height, let animationDuration = notification.keyboardAnimationDuration {
-            UIView.animate(withDuration: animationDuration) {
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.addTodoBottomConstraint.constant = keyboardHeight + 25.0
                 self.toolbarView.alpha = 1
                 self.toolbarBottomConstraint.constant = keyboardHeight - 35.0
                 self.view.layoutIfNeeded()
+            }) { (_) in
+                
             }
         }
         
