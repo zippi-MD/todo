@@ -22,8 +22,6 @@ class Toolbar: UIView {
     @IBOutlet weak var scheduleBackgroundView: UIView!
     @IBOutlet weak var discardBackgorundView: UIView!
     
-    let actionsCornerRadius: CGFloat = 7.0
-    
     weak var delegate: ToolbarDelegate?
     
     override init(frame: CGRect) {
@@ -48,9 +46,9 @@ class Toolbar: UIView {
     }
     
     func setupActionsCornerRadius(){
-        addBackgroundView.layer.cornerRadius = actionsCornerRadius
-        scheduleBackgroundView.layer.cornerRadius = actionsCornerRadius
-        discardBackgorundView.layer.cornerRadius = actionsCornerRadius
+        addBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        scheduleBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        discardBackgorundView.layer.cornerRadius = Constants.TodoCornerRadius
     }
     
     func addGestureRecognizerToActions(){
