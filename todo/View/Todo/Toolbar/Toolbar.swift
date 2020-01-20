@@ -22,6 +22,8 @@ class Toolbar: UIView {
     @IBOutlet weak var scheduleBackgroundView: UIView!
     @IBOutlet weak var discardBackgorundView: UIView!
     
+    var actionView: [UIView]?
+    
     weak var delegate: ToolbarDelegate?
     
     override init(frame: CGRect) {
@@ -42,6 +44,7 @@ class Toolbar: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         setupActionsCornerRadius()
+        actionView = [addBackgroundView, scheduleBackgroundView, discardBackgorundView]
         addGestureRecognizerToActions()
     }
     
@@ -74,5 +77,33 @@ extension Toolbar {
     }
     @objc func discardActionSelected(){
         delegate?.discardActionWasSelected()
+    }
+}
+
+// MARK: TraitCollection
+extension Toolbar {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection == previousTraitCollection {
+            return
+        }
+        
+        guard let actionViews = actionView, traitCollection != previousTraitCollection else { return }
+        
+        let userInterfaceStyle = traitCollection.userInterfaceStyle
+        
+        switch userInterfaceStyle {
+            
+        case .light, .unspecified:
+            for actionView in actionViews {
+                actionView.layer.borderWidth = 0
+            }
+        case .dark:
+            for actionView in actionViews {
+                actionView.layer.borderWidth = Constants.ToolbarActionBorderWidth
+            }
+        }
+        
     }
 }
