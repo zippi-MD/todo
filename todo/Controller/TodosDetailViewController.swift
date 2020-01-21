@@ -17,6 +17,7 @@ class TodosDetailViewController: UIViewController {
     @IBOutlet weak var addTodoBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var detailTableView: UITableView!
+    @IBOutlet weak var addTodoBackgroundView: UIView!
     
     let keyboardHandler = KeyboardEvents()
     
@@ -31,6 +32,8 @@ class TodosDetailViewController: UIViewController {
         toolbarView.delegate = self
         detailTableView.delegate = self
         detailTableView.dataSource = self
+        
+        setupUI()
     }
     
     
@@ -39,20 +42,40 @@ class TodosDetailViewController: UIViewController {
         keyboardHandler.unregisterFromKeyboardEvents()
     }
     
-    @IBAction func activateAddTodo(_ sender: Any) {
+    func setupUI(){
+        let discardTap = UITapGestureRecognizer(target: self, action: #selector(addTodoBackgroundViewWasSelected))
+        addTodoBackgroundView.addGestureRecognizer(discardTap)
+        
+        detailTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)
+    }
+    
+    @IBAction func addTodoButtonTapped(_ sender: UIButton) {
         actualTodoDetailState = .present
         let animationDuration: TimeInterval = 0.25
         addTodoView.alpha = 0
         addTodoView.isHidden = false
+        
+        addTodoBackgroundView.alpha = 0
+        addTodoBackgroundView.isHidden = false
         
         UIView.animate(withDuration: animationDuration, animations: {
             self.addTodoView.alpha = 1
             self.addTodoBottomConstraint.constant = self.view.frame.height * 0.4
             self.view.layoutIfNeeded()
         }) { (_) in
+            
+            UIView.animate(withDuration: animationDuration) {
+                self.addTodoBackgroundView.alpha = 1
+            }
+            
             self.addTodoView.todoTextView.becomeFirstResponder()
         }
     }
+    
+    @objc func addTodoBackgroundViewWasSelected(){
+        discardActionWasSelected()
+    }
+    
     
 }
 
@@ -66,10 +89,13 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
         let keyboardSize = notification.keyboardSize
         
         if let keyboardHeight = keyboardSize?.height, let animationDuration = notification.keyboardAnimationDuration {
-            UIView.animate(withDuration: animationDuration) {
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.addTodoBottomConstraint.constant = keyboardHeight + 50.0
                 self.toolbarView.alpha = 1
                 self.toolbarBottomConstraint.constant = keyboardHeight - 35.0
                 self.view.layoutIfNeeded()
+            }) { (_) in
+                
             }
         }
         
@@ -134,6 +160,7 @@ extension TodosDetailViewController: ToolbarDelegate {
         UIView.animate(withDuration: animationDuration, animations: {
             self.addTodoBottomConstraint.constant = 0
             self.addTodoView.alpha = 0
+            self.addTodoBackgroundView.alpha = 0
             self.view.layoutIfNeeded()
         }) { (_) in
             self.addTodoView.todoTextView.resignFirstResponder()

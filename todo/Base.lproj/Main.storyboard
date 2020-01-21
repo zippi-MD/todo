@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,28 +72,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oQy-v7-OeB">
-                                <rect key="frame" x="122" y="113" width="131" height="32"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biY-Rd-OCs">
-                                <rect key="frame" x="319" y="88" width="36" height="35"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                <state key="normal" image="gear" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                    </preferredSymbolConfiguration>
-                                </state>
-                                <variation key="widthClass=regular" hidden="YES"/>
-                                <connections>
-                                    <action selector="activateAddTodo:" destination="PbG-KW-01o" eventType="touchUpInside" id="PtB-OD-gpN"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
-                                <rect key="frame" x="0.0" y="164" width="375" height="314"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="390"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="750" id="hcK-i1-HEi"/>
@@ -108,11 +89,27 @@
                                     </mask>
                                 </variation>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAf-aC-cL8">
+                                <rect key="frame" x="171" y="729" width="33" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" image="plus.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="addTodoButtonTapped:" destination="PbG-KW-01o" eventType="touchUpInside" id="kBg-PC-cPz"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGN-bq-kWV">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <color key="backgroundColor" name="Header-Background"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
-                                <rect key="frame" x="8" y="579" width="375" height="120"/>
+                                <rect key="frame" x="9.3333333333333428" y="573" width="356.33333333333326" height="85"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="9zU-kf-6c7"/>
+                                    <constraint firstAttribute="height" constant="85" id="MdE-1W-YYp"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pxo-Lf-XcJ" customClass="Toolbar" customModule="todo" customModuleProvider="target">
@@ -126,20 +123,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="0db-gJ-qEe"/>
-                            <constraint firstItem="oQy-v7-OeB" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" constant="25" id="4SS-k6-A6K"/>
-                            <constraint firstItem="oQy-v7-OeB" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="BBB-aH-P7W"/>
-                            <constraint firstItem="uU5-cD-dnC" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" constant="8" id="FdZ-ZT-0Ty"/>
+                            <constraint firstItem="rAf-aC-cL8" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="4Gf-Rl-My6"/>
+                            <constraint firstItem="PTx-ao-2GX" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" id="50U-bn-Tz8"/>
+                            <constraint firstItem="uU5-cD-dnC" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="Fyj-8N-fJP"/>
+                            <constraint firstItem="UGN-bq-kWV" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="IaR-B4-Aj9"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="Pxo-Lf-XcJ" secondAttribute="bottom" constant="50" id="Lsv-sl-G9h"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="NoK-k1-dSU"/>
-                            <constraint firstItem="biY-Rd-OCs" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" id="Sh9-zs-65h"/>
-                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="biY-Rd-OCs" secondAttribute="trailing" constant="20" id="SvZ-NR-asA"/>
+                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="UGN-bq-kWV" secondAttribute="trailing" id="Wss-Ag-Slg"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="trailing" secondItem="8ZC-tY-1uZ" secondAttribute="trailing" id="X7T-md-Dx6"/>
+                            <constraint firstItem="UGN-bq-kWV" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" id="c2S-OG-kxw"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="bottom" secondItem="8ZC-tY-1uZ" secondAttribute="bottom" constant="-300" id="f3L-26-XIR"/>
-                            <constraint firstItem="uU5-cD-dnC" firstAttribute="trailing" secondItem="8ZC-tY-1uZ" secondAttribute="trailing" constant="8" id="fcB-K4-WOx"/>
+                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="rAf-aC-cL8" secondAttribute="bottom" constant="8" id="gxd-Q3-0XI"/>
                             <constraint firstItem="Pxo-Lf-XcJ" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="jni-gq-yBY"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="Pxo-Lf-XcJ" secondAttribute="trailing" id="lV2-tG-0V0"/>
-                            <constraint firstItem="PTx-ao-2GX" firstAttribute="top" secondItem="oQy-v7-OeB" secondAttribute="bottom" constant="20" id="sXy-hv-ZBO"/>
-                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="uU5-cD-dnC" secondAttribute="bottom" constant="79" id="xAH-Kv-Gse"/>
+                            <constraint firstItem="UGN-bq-kWV" firstAttribute="bottom" secondItem="8ZC-tY-1uZ" secondAttribute="bottom" id="mQN-eM-sET"/>
+                            <constraint firstItem="uU5-cD-dnC" firstAttribute="width" secondItem="E1F-KJ-UXI" secondAttribute="width" multiplier="0.95" id="sEa-4f-dnK"/>
+                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="uU5-cD-dnC" secondAttribute="bottom" constant="120" id="xAH-Kv-Gse"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8ZC-tY-1uZ"/>
                         <variation key="default">
@@ -156,6 +155,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="addTodoBackgroundView" destination="UGN-bq-kWV" id="cId-ZQ-k3K"/>
                         <outlet property="addTodoBottomConstraint" destination="xAH-Kv-Gse" id="3be-FM-GwC"/>
                         <outlet property="addTodoView" destination="uU5-cD-dnC" id="4l0-CP-0f0"/>
                         <outlet property="detailTableView" destination="PTx-ao-2GX" id="Ecq-QT-8Ix"/>
@@ -233,5 +233,9 @@
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="plus.circle" catalog="system" width="64" height="60"/>
+        <namedColor name="Header-Background">
+            <color red="1" green="1" blue="1" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

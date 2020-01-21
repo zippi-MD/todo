@@ -8,4 +8,9 @@
 
 import UIKit
 
-let CornerRadius: CGFloat = 10
+struct Constants {
+    static let TodoCornerRadius: CGFloat = 4.0
+    static let ToolbarActionBorderWidth: CGFloat = 0.5
+    static let DetailTodoCellIdentifier: String = "TodoCell"
+    static let TagIdentifier: String = "#"
+}

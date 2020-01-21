@@ -22,7 +22,7 @@ class Toolbar: UIView {
     @IBOutlet weak var scheduleBackgroundView: UIView!
     @IBOutlet weak var discardBackgorundView: UIView!
     
-    let actionsCornerRadius: CGFloat = 7.0
+    var actionView: [UIView]?
     
     weak var delegate: ToolbarDelegate?
     
@@ -36,6 +36,7 @@ class Toolbar: UIView {
         customInit()
     }
     
+    
     func customInit(){
         let bundle = Bundle(for: AddTodo.self)
         bundle.loadNibNamed(String(describing: Toolbar.self), owner: self, options: nil)
@@ -44,13 +45,15 @@ class Toolbar: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         setupActionsCornerRadius()
+        actionView = [addBackgroundView, scheduleBackgroundView, discardBackgorundView]
         addGestureRecognizerToActions()
+        updateUIForStyle(style: traitCollection.userInterfaceStyle)
     }
     
     func setupActionsCornerRadius(){
-        addBackgroundView.layer.cornerRadius = actionsCornerRadius
-        scheduleBackgroundView.layer.cornerRadius = actionsCornerRadius
-        discardBackgorundView.layer.cornerRadius = actionsCornerRadius
+        addBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        scheduleBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        discardBackgorundView.layer.cornerRadius = Constants.TodoCornerRadius
     }
     
     func addGestureRecognizerToActions(){
@@ -78,3 +81,41 @@ extension Toolbar {
         delegate?.discardActionWasSelected()
     }
 }
+
+// MARK: TraitCollection
+extension Toolbar {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection == previousTraitCollection {
+            return
+        }
+        
+        updateUIForStyle(style: traitCollection.userInterfaceStyle)
+        
+    }
+}
+
+
+// MARK: Handle UserInterfaceStyle
+extension Toolbar {
+    func updateUIForStyle(style: UIUserInterfaceStyle) {
+        guard let actionViews = actionView else { return }
+        
+        switch style {
+            
+        case .light, .unspecified:
+            for actionView in actionViews {
+                actionView.layer.borderWidth = 0
+            }
+        case .dark:
+            for actionView in actionViews {
+                actionView.layer.borderWidth = Constants.ToolbarActionBorderWidth
+            }
+        @unknown default:
+            assert(true, "Missing UserInterfaceStyle")
+        }
+        
+    }
+}
+

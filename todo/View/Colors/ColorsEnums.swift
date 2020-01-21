@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TagBackgroundColors: String {
+enum TagBackgroundColors: String, CaseIterable {
     case TagBlue1 = "Tag-Blue-1"
     case TagGreen1 = "Tag-Green-1"
     case TagGreen2 = "Tag-Green-2"
