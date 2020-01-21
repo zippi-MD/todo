@@ -16,15 +16,15 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view opaque="NO" contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="735" height="323"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKI-cb-KoO">
-                    <rect key="frame" x="18.5" y="48.5" width="698" height="226"/>
+                    <rect key="frame" x="-3.5" y="0.0" width="742" height="323"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3PA-Tr-5IE">
-                            <rect key="frame" x="17.5" y="22.5" width="663" height="181"/>
+                            <rect key="frame" x="18.5" y="32.5" width="705" height="258"/>
                             <color key="backgroundColor" name="Cell-Label-Background"/>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -40,11 +40,12 @@
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="nKI-cb-KoO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.95" id="3l6-ih-QD2"/>
+                <constraint firstItem="nKI-cb-KoO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1.01" id="3l6-ih-QD2"/>
                 <constraint firstItem="nKI-cb-KoO" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Mcg-3X-ADZ"/>
                 <constraint firstItem="nKI-cb-KoO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="j2K-kl-NQU"/>
-                <constraint firstItem="nKI-cb-KoO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.7" id="ryu-T4-jFb"/>
+                <constraint firstItem="nKI-cb-KoO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="ryu-T4-jFb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
