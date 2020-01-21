@@ -18,6 +18,6 @@ extension TodosDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100.0
+        return 70.0
     }
 }
