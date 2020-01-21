@@ -36,6 +36,7 @@ class Toolbar: UIView {
         customInit()
     }
     
+    
     func customInit(){
         let bundle = Bundle(for: AddTodo.self)
         bundle.loadNibNamed(String(describing: Toolbar.self), owner: self, options: nil)
@@ -46,6 +47,7 @@ class Toolbar: UIView {
         setupActionsCornerRadius()
         actionView = [addBackgroundView, scheduleBackgroundView, discardBackgorundView]
         addGestureRecognizerToActions()
+        updateUIForStyle(style: traitCollection.userInterfaceStyle)
     }
     
     func setupActionsCornerRadius(){
@@ -89,11 +91,18 @@ extension Toolbar {
             return
         }
         
-        guard let actionViews = actionView, traitCollection != previousTraitCollection else { return }
+        updateUIForStyle(style: traitCollection.userInterfaceStyle)
         
-        let userInterfaceStyle = traitCollection.userInterfaceStyle
+    }
+}
+
+
+// MARK: Handle UserInterfaceStyle
+extension Toolbar {
+    func updateUIForStyle(style: UIUserInterfaceStyle) {
+        guard let actionViews = actionView else { return }
         
-        switch userInterfaceStyle {
+        switch style {
             
         case .light, .unspecified:
             for actionView in actionViews {
@@ -103,7 +112,10 @@ extension Toolbar {
             for actionView in actionViews {
                 actionView.layer.borderWidth = Constants.ToolbarActionBorderWidth
             }
+        @unknown default:
+            assert(true, "Missing UserInterfaceStyle")
         }
         
     }
 }
+
