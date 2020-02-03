@@ -4,10 +4,11 @@
         <attribute name="compleated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dateCreation" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateScheduled" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="tagColor" optional="YES" attributeType="String"/>
         <attribute name="tagName" optional="YES" attributeType="String"/>
         <attribute name="todoDescription" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Todo" positionX="-63" positionY="-18" width="128" height="28"/>
+        <element name="Todo" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

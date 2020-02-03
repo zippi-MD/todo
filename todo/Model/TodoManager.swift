@@ -14,18 +14,51 @@ class TodoManager {
     
     var todosTags = Set<String>()
     
-    init() {
-        todosTags = getTodosTags()
-    }
-    
-    
-    private func getTodosTags() -> Set<String> {
-        var tags = Set<String>()
-        
-        for todo in someTodos {
-            tags.insert(todo.tagName)
+    var todos = [Todo]() {
+        didSet {
+            getTodosTags()
+            todoTagsSorted = Array(todosTags).sorted()
         }
-        
-        return tags
     }
+    
+    var todosByTag = [String: [Todo]]()
+    
+    var numberOfSections: Int { todosTags.count }
+    
+    private var todoTagsSorted = [String]()
+    
+    private func getTodosTags() {
+        for todo in todos {
+            if let tag = todo.tagName {
+                todosTags.insert(tag)
+                
+                if let _ = todosByTag[tag] {
+                    todosByTag[tag]?.append(todo)
+                }
+                else {
+                    todosByTag[tag] = [todo]
+                }
+                
+            }
+        }
+    }
+    
+    func numberOfRowsInSection(_ section: Int) -> Int{
+        
+        if todos.count == 0 { return 0 }
+        
+        let tagForSection = todoTagsSorted[section]
+        return todosByTag[tagForSection]?.count ?? 0
+    }
+    
+    func todoForIndexPath(_ indexPath: IndexPath) -> Todo? {
+        let tag = todoTagsSorted[indexPath.section]
+        return todosByTag[tag]?[indexPath.row]
+    }
+    
+    func tagForIndexPath(_ indexPath: IndexPath) -> String? {
+        if todos.count == 0 { return nil }
+        return todoTagsSorted[indexPath.row]
+    }
+    
 }

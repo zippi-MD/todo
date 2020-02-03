@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+func getLocalShortDateFor(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .short
+    return dateFormatter.string(from: date)
+}

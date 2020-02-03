@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TodosDetailViewController: UIViewController {
 
@@ -24,6 +25,9 @@ class TodosDetailViewController: UIViewController {
     var actualTodoDetailState: TodoState = .discard
     var actualKeyboardState: KeyboardState = .hidden
     
+    var _fetchedResultsController: NSFetchedResultsController<Todo>? = nil
+    var managedObjectContext: NSManagedObjectContext? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardHandler.registerForKeyboardEvents()
@@ -32,6 +36,11 @@ class TodosDetailViewController: UIViewController {
         toolbarView.delegate = self
         detailTableView.delegate = self
         detailTableView.dataSource = self
+        detailTableView.allowsMultipleSelectionDuringEditing = false
+        
+        if let todos = fetchedResultsController.fetchedObjects {
+            TodoManager.sharedInstance.todos = todos
+        }
         
         setupUI()
     }
@@ -40,6 +49,7 @@ class TodosDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardHandler.unregisterFromKeyboardEvents()
+        
     }
     
     func setupUI(){
@@ -69,6 +79,25 @@ class TodosDetailViewController: UIViewController {
             }
             
             self.addTodoView.todoTextView.becomeFirstResponder()
+        }
+    }
+    
+    func insertNewTodo(){
+        let context = self.fetchedResultsController.managedObjectContext
+        let newTodo = Todo(context: context)
+             
+        newTodo.compleated = false
+        newTodo.tagName = "#Test"
+        newTodo.todoDescription = "Esta es una descripción"
+        newTodo.dateCreation = Date()
+        
+        do {
+            try context.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
     
@@ -143,7 +172,7 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
 // MARK: - Handle Toolbar Events
 extension TodosDetailViewController: ToolbarDelegate {
     func addActionWasSelected() {
-
+        insertNewTodo()
     }
     
     func scheduleActionWasSelected() {
@@ -187,6 +216,76 @@ extension TodosDetailViewController {
         case presented
     }
     
+}
+
+// MARK: - Handle UI Updated
+
+extension TodosDetailViewController {
+    
+}
+
+
+
+// MARK: - Fetched Results Controller
+
+extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
+    var fetchedResultsController: NSFetchedResultsController<Todo> {
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
+        
+        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        
+        fetchRequest.fetchBatchSize = 20
+        
+        let sortDescriptor = NSSortDescriptor(key: "dateCreation", ascending: false)
+
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        aFetchedResultsController.delegate = self
+        _fetchedResultsController = aFetchedResultsController
+        
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch {
+             // Replace this implementation with code to handle the error appropriately.
+             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+             let nserror = error as NSError
+             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController!
+    }
+    
+    
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        detailTableView.beginUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+            case .insert:
+                detailTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+            case .delete:
+                detailTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+            default:
+                return
+        }
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        if let todos = fetchedResultsController.fetchedObjects {
+            TodoManager.sharedInstance.todos = todos
+        }
+        
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        detailTableView.endUpdates()
+    }
 }
 
 

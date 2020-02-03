@@ -41,7 +41,7 @@ func getHighlightedTextFor(_ string: String, withLocation location: NSRange, col
     let attributed = NSMutableAttributedString(string: string)
     
     if wide {
-        var textToHighlight = NSMutableAttributedString(string: attributed.attributedSubstring(from: location).string)
+        let textToHighlight = NSMutableAttributedString(string: attributed.attributedSubstring(from: location).string)
         textToHighlight.insert(NSAttributedString(string: " "), at: 0)
         textToHighlight.insert(NSAttributedString(string: " "), at: textToHighlight.length)
     

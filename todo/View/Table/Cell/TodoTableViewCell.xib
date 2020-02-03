@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +33,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Cell-Date-Background"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Jp2-nH-XVn" secondAttribute="bottom" constant="2" id="BCK-JM-gRX"/>
                             <constraint firstAttribute="trailing" secondItem="Jp2-nH-XVn" secondAttribute="trailing" constant="2" id="SbJ-qL-yjm"/>
@@ -52,11 +53,10 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufh-Qj-SZY">
                                 <rect key="frame" x="37" y="6" width="271" height="28.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cro-Ug-6L0" firstAttribute="centerY" secondItem="Ab9-gS-Ee3" secondAttribute="centerY" id="DzR-RU-yGt"/>
                             <constraint firstItem="Cro-Ug-6L0" firstAttribute="leading" secondItem="Ab9-gS-Ee3" secondAttribute="leading" constant="8" id="FDf-EM-rHI"/>
@@ -93,5 +93,8 @@
     </objects>
     <resources>
         <image name="circle" catalog="system" width="64" height="60"/>
+        <namedColor name="Cell-Date-Background">
+            <color red="0.078431372549019607" green="0.58823529411764708" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

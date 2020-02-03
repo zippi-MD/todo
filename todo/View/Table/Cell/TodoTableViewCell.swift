@@ -16,13 +16,18 @@ enum TodoState {
 class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var todoTagLabel: UILabel!
-    @IBOutlet weak var dateBackgroundView: UIView!
+    @IBOutlet weak var dateBackgroundView: UIView! {
+        didSet {
+            dateBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
     @IBOutlet weak var todoDateLabel: UILabel!
     @IBOutlet weak var todoBackgroundView: UIView!
     @IBOutlet weak var todoStateIndicatorImageView: UIImageView!
     @IBOutlet weak var todoLabel: UILabel!
     
-    var todoDescription: String {
+    var todo: Todo?
+    var todoDescription: String? {
         set {
             todoLabel.text = newValue
         }
@@ -32,12 +37,29 @@ class TodoTableViewCell: UITableViewCell {
         }
     }
     
-    var todoTag: NSAttributedString {
+    var todoTag: String? {
         set {
-            todoTagLabel.attributedText = newValue
+            if let tag = newValue, let location = getLocationOfTagFrom(tag, beginningWith: Constants.TagIdentifier), let tagBackgroundIdentifier = TagBackgroundColors.allCases.randomElement(), let color = UIColor(named: tagBackgroundIdentifier.rawValue) {
+                
+                let highlightedTag = getHighlightedTextFor(tag, withLocation: location, color: color, wide: true)
+                
+                todoTagLabel.attributedText = highlightedTag
+            }
         }
         get {
-            return todoTagLabel.attributedText ?? NSAttributedString(string: "")
+            return todoTagLabel.text
+        }
+    }
+    
+    var todoScheduledDate: Date? {
+        willSet {
+            if let date = newValue {
+                showDate = true
+                todoDateLabel.text = getLocalShortDateFor(date)
+            }
+            else {
+                showDate = false
+            }
         }
     }
     
@@ -62,7 +84,7 @@ class TodoTableViewCell: UITableViewCell {
         }
     }
     
-    var showDate: Bool {
+    private var showDate: Bool {
         set {
             dateBackgroundView.isHidden = !newValue
         }
