@@ -25,21 +25,27 @@ class TodoManager {
     
     var numberOfSections: Int { todosTags.count }
     
-    private var todoTagsSorted = [String]()
+    private(set) var todoTagsSorted = [String]()
     
     private func getTodosTags() {
         for todo in todos {
-            if let tag = todo.tagName {
-                todosTags.insert(tag)
-                
-                if let _ = todosByTag[tag] {
-                    todosByTag[tag]?.append(todo)
-                }
-                else {
-                    todosByTag[tag] = [todo]
-                }
-                
+            var tag: String
+            if let todoTag = todo.tagName {
+                tag = todoTag
             }
+            else {
+                tag = "#Something"
+            }
+            
+            todosTags.insert(tag)
+            
+            if let _ = todosByTag[tag] {
+                todosByTag[tag]?.append(todo)
+            }
+            else {
+                todosByTag[tag] = [todo]
+            }
+            
         }
     }
     
@@ -59,6 +65,15 @@ class TodoManager {
     func tagForIndexPath(_ indexPath: IndexPath) -> String? {
         if todos.count == 0 { return nil }
         return todoTagsSorted[indexPath.row]
+    }
+    
+    func getColorForTag(_ tag: String) -> TagBackgroundColors? {
+        if todosTags.contains(tag), let tagColor = todosByTag[tag]?.first?.tagColor {
+            return TagBackgroundColors(rawValue: tagColor)
+        }
+        else {
+            return nil
+        }
     }
     
 }

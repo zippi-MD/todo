@@ -12,7 +12,12 @@ extension TodosDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let header = HeaderView()
-        header.headerTag = "#Test"
+        let tag = TodoManager.sharedInstance.todoTagsSorted[section]
+        header.headerTag = TodoManager.sharedInstance.todoTagsSorted[section]
+        
+        if let colorName = TodoManager.sharedInstance.getColorForTag(tag) {
+            header.headerTagColor = getColorFrom(colorName)
+        }
         
         return header
     }
@@ -21,6 +26,9 @@ extension TodosDetailViewController: UITableViewDelegate {
         Constants.TodoDetailTableViewHeaderHeight
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        TodoManager.sharedInstance.numberOfSections
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

@@ -10,12 +10,32 @@ import UIKit
 @IBDesignable
 class AddTodo: UIView {
 
-    @IBOutlet var containerView: AddTodo!
-    @IBOutlet weak var todoBackgroundView: UIView!
+    @IBOutlet private var containerView: AddTodo!
+    @IBOutlet private weak var todoBackgroundView: UIView!
     
-    @IBOutlet weak var todoTextView: UITextView!
+    @IBOutlet private weak var todoTextView: UITextView!
     
-    var todoTag: String?
+    let todoManager = TodoManager.sharedInstance
+    
+    var todoTagName: String?
+    var todoDescription: String {
+        get {
+            todoTextView.text
+        }
+    }
+    private var todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
+    private var temporalTodoTagBackgroundColor: TagBackgroundColors?
+    
+    var tagColor: TagBackgroundColors {
+        get {
+            if let color = temporalTodoTagBackgroundColor {
+                return color
+            }
+            else {
+                return todoTagBackgroundColor
+            }
+        }
+    }
     
     override init(frame: CGRect) {
        super.init(frame: frame)
@@ -25,6 +45,14 @@ class AddTodo: UIView {
     required init?(coder: NSCoder) {
        super.init(coder: coder)
        customInit()
+    }
+    
+    func resignAsFirstResponder() {
+        self.todoTextView.resignFirstResponder()
+    }
+    
+    func setAsFirstResponder(){
+        self.todoTextView.becomeFirstResponder()
     }
     
     private func customInit(){
@@ -38,13 +66,13 @@ class AddTodo: UIView {
         setupUI()
     }
     
-    func setupUI(){
+    private func setupUI(){
         todoBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
         todoTextView.layer.cornerRadius = Constants.TodoCornerRadius
         containerView.layer.cornerRadius = Constants.TodoCornerRadius * 2
     }
     
-    func alignTextVerticallyInContainer() {
+    private func alignTextVerticallyInContainer() {
         var topCorrect = (todoTextView.bounds.size.height - todoTextView.contentSize.height * todoTextView.zoomScale) / 2
         topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
         todoTextView.contentInset.top = topCorrect
@@ -58,13 +86,25 @@ extension AddTodo: UITextViewDelegate {
         let text = textView.text ?? ""
         let cursorLocation = textView.selectedRange.location
         
-        if let location = getLocationOfTagFrom(text, beginningWith: "#") {
-            let attributed = getHighlightedTextFor(text, withLocation: location, color: UIColor.systemPink)
-            todoTag = getTagFrom(attributed, tagLocation: location)
+        if  let location = getLocationOfTagFrom(text, beginningWith: "#"){
+            
+            var color = getColorFrom(todoTagBackgroundColor)
+            var attributed = getHighlightedTextFor(text, withLocation: location, color: color)
+            todoTagName = getTagFrom(attributed, tagLocation: location)
+            
+            if  let tagBackgroungColor = todoManager.getColorForTag(todoTagName ?? ""){
+                temporalTodoTagBackgroundColor = tagBackgroungColor
+                color = getColorFrom(tagBackgroungColor)
+                attributed = getHighlightedTextFor(text, withLocation: location, color: color)
+            }
+            else {
+                temporalTodoTagBackgroundColor = nil
+            }
+            
             textView.attributedText = attributed
         }
         else {
-            todoTag = nil
+            todoTagName = nil
         }
         
         textView.selectedRange = NSRange(location: cursorLocation, length: 0)

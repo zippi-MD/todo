@@ -43,7 +43,7 @@ class TodoTagsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath) as! TodoTagTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath)
         
         guard let masterViewCell = cell as? TodoTagTableViewCell, let tag = TodoManager.sharedInstance.tagForIndexPath(indexPath) else { return cell }
         

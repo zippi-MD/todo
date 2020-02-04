@@ -78,18 +78,18 @@ class TodosDetailViewController: UIViewController {
                 self.addTodoBackgroundView.alpha = 1
             }
             
-            self.addTodoView.todoTextView.becomeFirstResponder()
+            self.addTodoView.setAsFirstResponder()
         }
     }
     
-    func insertNewTodo(){
+    func insertNewTodo(_ configuration: TodoConfiguration){
         let context = self.fetchedResultsController.managedObjectContext
         let newTodo = Todo(context: context)
              
-        newTodo.compleated = false
-        newTodo.tagName = "#Test"
-        newTodo.todoDescription = "Esta es una descripción"
-        newTodo.dateCreation = Date()
+        newTodo.compleated = configuration.completed
+        newTodo.tagName = configuration.tagName
+        newTodo.todoDescription = configuration.todoDescription
+        newTodo.dateCreation = configuration.dateCreation
         
         do {
             try context.save()
@@ -172,13 +172,18 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
 // MARK: - Handle Toolbar Events
 extension TodosDetailViewController: ToolbarDelegate {
     func addActionWasSelected() {
-        insertNewTodo()
+        
+        let todoConfiguration = TodoConfiguration(tagName: addTodoView.todoTagName,
+                                                  tagColor: addTodoView.tagColor.rawValue,
+                                                  todoDescription: addTodoView.todoDescription,
+                                                  dateCreation: Date())
+        insertNewTodo(todoConfiguration)
     }
     
     func scheduleActionWasSelected() {
         actualTodoDetailState = .schedule
         
-        addTodoView.todoTextView.resignFirstResponder()
+        addTodoView.resignAsFirstResponder()
     }
     
     func discardActionWasSelected() {
@@ -192,7 +197,7 @@ extension TodosDetailViewController: ToolbarDelegate {
             self.addTodoBackgroundView.alpha = 0
             self.view.layoutIfNeeded()
         }) { (_) in
-            self.addTodoView.todoTextView.resignFirstResponder()
+            self.addTodoView.resignAsFirstResponder()
             self.addTodoView.isHidden = true
         }
         
@@ -219,7 +224,6 @@ extension TodosDetailViewController {
 }
 
 // MARK: - Handle UI Updated
-
 extension TodosDetailViewController {
     
 }
@@ -227,7 +231,6 @@ extension TodosDetailViewController {
 
 
 // MARK: - Fetched Results Controller
-
 extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
     var fetchedResultsController: NSFetchedResultsController<Todo> {
         if _fetchedResultsController != nil {
