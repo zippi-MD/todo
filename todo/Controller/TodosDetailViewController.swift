@@ -22,11 +22,27 @@ class TodosDetailViewController: UIViewController {
     
     let keyboardHandler = KeyboardEvents()
     
+    let sortTodosOptions: [SortOptions] = [.ByTag, .ByDateCreated, .ByDateScheduled]
+    var detailCompactSelectedSort: SortOptions = .ByTag {
+        willSet {
+            detailTableView.reloadData()
+        }
+    }
+    
     var actualTodoDetailState: TodoState = .discard
     var actualKeyboardState: KeyboardState = .hidden
     
     var _fetchedResultsController: NSFetchedResultsController<Todo>? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    lazy var sortSegmentedController: UISegmentedControl = {
+        [unowned self] in
+        let titles = self.sortTodosOptions.map { (title) -> String in title.rawValue }
+        let segmentedController = UISegmentedControl(items: titles)
+        segmentedController.selectedSegmentIndex = 0
+        segmentedController.addTarget(self, action: #selector(detailSortedCompactSegmentedControllerChangedValueTo(_:)), for: .valueChanged)
+        return segmentedController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +61,15 @@ class TodosDetailViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateUIForStyle(style: traitCollection.horizontalSizeClass)
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardHandler.unregisterFromKeyboardEvents()
-        
     }
     
     func setupUI(){
@@ -90,6 +110,7 @@ class TodosDetailViewController: UIViewController {
         newTodo.tagName = configuration.tagName
         newTodo.todoDescription = configuration.todoDescription
         newTodo.dateCreation = configuration.dateCreation
+        newTodo.tagColor = configuration.tagColor
         
         do {
             try context.save()
@@ -223,11 +244,19 @@ extension TodosDetailViewController {
     
 }
 
-// MARK: - Handle UI Updated
+//MARK: - Segmented Controller Events
 extension TodosDetailViewController {
-    
+    @objc func detailSortedCompactSegmentedControllerChangedValueTo(_ sender: UISegmentedControl){
+        let selectedValueIndex = sender.selectedSegmentIndex
+        let selectedValue = sender.titleForSegment(at: selectedValueIndex)
+        
+        if  let title = selectedValue,
+            let sortedOption = SortOptions(rawValue: title) {
+            detailCompactSelectedSort = sortedOption
+        }
+        
+    }
 }
-
 
 
 // MARK: - Fetched Results Controller
@@ -263,35 +292,79 @@ extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
     
     
 
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        detailTableView.beginUpdates()
-    }
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-            case .insert:
-                detailTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-            case .delete:
-                detailTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-            default:
-                return
-        }
-    }
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        if let todos = fetchedResultsController.fetchedObjects {
-            TodoManager.sharedInstance.todos = todos
-        }
-        
-    }
-
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        detailTableView.endUpdates()
-    }
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        detailTableView.beginUpdates()
+//    }
+//
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+//        switch type {
+//            case .insert:
+//                detailTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+//            case .delete:
+//                detailTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+//            default:
+//                return
+//        }
+//    }
+//
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//
+//        switch type {
+//            case .insert:
+//                detailTableView.insertRows(at: [newIndexPath!], with: .fade)
+//            case .delete:
+//                detailTableView.deleteRows(at: [indexPath!], with: .fade)
+//            case .update:
+//                return
+//            case .move:
+//                return
+//            default:
+//                return
+//        }
+//    }
+//
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        detailTableView.endUpdates()
+//    }
 }
 
 
 
 
+// MARK: TraitCollection
+extension TodosDetailViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection == previousTraitCollection {
+            return
+        }
+        
+        updateUIForStyle(style: traitCollection.horizontalSizeClass)
+        
+    }
+}
+
+
+// MARK: Handle UserInterfaceStyle
+extension TodosDetailViewController {
+    func updateUIForStyle(style: UIUserInterfaceSizeClass) {
+        
+        switch style {
+            
+        case .compact, .unspecified:
+            navigationItem.titleView = sortSegmentedController
+            navigationController?.navigationBar.isTranslucent = true
+            navigationItem.setHidesBackButton(true, animated: true)
+            
+        case .regular:
+            navigationItem.titleView = nil
+            navigationItem.setHidesBackButton(false, animated: true)
+            
+        @unknown default:
+            break
+        }
+        
+    }
+}
 

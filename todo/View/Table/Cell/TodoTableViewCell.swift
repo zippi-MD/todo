@@ -23,13 +23,21 @@ class TodoTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var todoDateLabel: UILabel!
     @IBOutlet weak var todoBackgroundView: UIView!
-    @IBOutlet weak var todoStateIndicatorImageView: UIImageView!
+
     @IBOutlet weak var todoLabel: UILabel!
+    @IBOutlet weak var dateHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todoTagHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateTopConstraint: NSLayoutConstraint!
     
     var todo: Todo?
     var todoDescription: String? {
         set {
-            todoLabel.text = newValue
+            if let tag = todoTag {
+                todoLabel.text = newValue?.replacingOccurrences(of: tag, with: " ")
+            }
+            else {
+                todoLabel.text = newValue
+            }
         }
         
         get {
@@ -67,16 +75,14 @@ class TodoTableViewCell: UITableViewCell {
     
     var todoState: TodoState {
         set {
-            let indicatorImageIdentifier: String
             switch newValue {
             case .incomplete:
-                indicatorImageIdentifier = "circle"
+                
                 actualTodoState = .incomplete
             case .complete:
-                indicatorImageIdentifier = "checkmark.circle.fill"
+                
                 actualTodoState = .complete
             }
-            todoStateIndicatorImageView.image = UIImage(systemName: indicatorImageIdentifier)
         }
         
         get {
@@ -99,6 +105,21 @@ class TodoTableViewCell: UITableViewCell {
         }
         get {
             return !todoTagLabel.isHidden
+        }
+    }
+    
+    var hideDateAndTag: Bool = false {
+        willSet {
+            if newValue {
+                todoTagHeightConstraint.constant = 0
+                dateHeightConstraint.constant = 0
+                dateTopConstraint.constant = 0
+            }
+            else {
+                todoTagHeightConstraint.constant = 20
+                dateHeightConstraint.constant = 25
+                dateTopConstraint.constant = 8
+            }
         }
     }
     

@@ -18,26 +18,24 @@ class HeaderView: UIView {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var starActionImageView: UIImageView!
     @IBOutlet weak var shareActionImageView: UIImageView!
     @IBOutlet weak var addActionImageView: UIImageView!
     
     weak var delegate: HeaderViewDelegate?
     
-    var headerTagColor: UIColor = UIColor.systemPink
+    var headerTagColor: UIColor = UIColor.systemPink {
+        willSet {
+            if  let location = getLocationOfTagFrom(headerTag, beginningWith: "#") {
+                let attributed = getHighlightedTextFor(headerTag, withLocation: location, color: newValue, wide: true)
+                tagLabel.attributedText = attributed
+            }
+        }
+    }
     var headerTag: String = "" {
         willSet {
             if let location = getLocationOfTagFrom(newValue, beginningWith: "#") {
                 let attributed = getHighlightedTextFor(newValue, withLocation: location, color: headerTagColor, wide: true)
                 tagLabel.attributedText = attributed
-            }
-        }
-    }
-    
-    var isStared: Bool = false {
-        willSet {
-            if newValue {
-                starActionImageView.image = UIImage(systemName: "star.fill")
             }
         }
     }
@@ -63,9 +61,6 @@ class HeaderView: UIView {
     }
     
     func addGestureRecognizerToActions(){
-        let starTap = UITapGestureRecognizer(target: self, action: #selector(starActionWasSelected))
-        starActionImageView.addGestureRecognizer(starTap)
-        
         let shareTap = UITapGestureRecognizer(target: self, action: #selector(shareActionWasSelected))
         shareActionImageView.addGestureRecognizer(shareTap)
         

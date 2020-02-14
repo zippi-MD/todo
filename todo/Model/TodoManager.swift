@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum SortOptions: String {
+    case ByTag = "By #'s"
+    case ByDateCreated = "Created"
+    case ByDateScheduled = "Scheduled"
+}
+
 class TodoManager {
     
     static let sharedInstance = TodoManager()

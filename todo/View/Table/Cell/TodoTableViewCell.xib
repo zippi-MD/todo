@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Something" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAj-P2-2Ln">
-                        <rect key="frame" x="8" y="8" width="88.5" height="19.5"/>
+                        <rect key="frame" x="8" y="8" width="88.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="riW-92-V8C"/>
+                        </constraints>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,31 +42,24 @@
                             <constraint firstAttribute="trailing" secondItem="Jp2-nH-XVn" secondAttribute="trailing" constant="2" id="SbJ-qL-yjm"/>
                             <constraint firstItem="Jp2-nH-XVn" firstAttribute="leading" secondItem="ua9-X5-6WG" secondAttribute="leading" constant="2" id="gaF-ZJ-uBd"/>
                             <constraint firstItem="Jp2-nH-XVn" firstAttribute="top" secondItem="ua9-X5-6WG" secondAttribute="top" constant="2" id="oad-nW-K5j"/>
+                            <constraint firstAttribute="height" constant="23.5" id="xko-tz-Thz"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ab9-gS-Ee3">
                         <rect key="frame" x="2" y="35.5" width="316" height="40.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cro-Ug-6L0">
-                                <rect key="frame" x="8" y="11.5" width="19" height="18"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                </preferredSymbolConfiguration>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufh-Qj-SZY">
-                                <rect key="frame" x="37" y="6" width="271" height="28.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufh-Qj-SZY">
+                                <rect key="frame" x="8" y="6" width="300" height="28.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Cro-Ug-6L0" firstAttribute="centerY" secondItem="Ab9-gS-Ee3" secondAttribute="centerY" id="DzR-RU-yGt"/>
-                            <constraint firstItem="Cro-Ug-6L0" firstAttribute="leading" secondItem="Ab9-gS-Ee3" secondAttribute="leading" constant="8" id="FDf-EM-rHI"/>
                             <constraint firstAttribute="trailing" secondItem="ufh-Qj-SZY" secondAttribute="trailing" constant="8" id="KcT-5l-XPs"/>
                             <constraint firstItem="ufh-Qj-SZY" firstAttribute="centerY" secondItem="Ab9-gS-Ee3" secondAttribute="centerY" id="qmR-h6-egG"/>
                             <constraint firstItem="ufh-Qj-SZY" firstAttribute="height" secondItem="Ab9-gS-Ee3" secondAttribute="height" multiplier="0.703297" id="tH4-Xv-RQl"/>
-                            <constraint firstItem="ufh-Qj-SZY" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Cro-Ug-6L0" secondAttribute="trailing" constant="10" id="vFT-VB-Gm2"/>
+                            <constraint firstItem="ufh-Qj-SZY" firstAttribute="leading" secondItem="Ab9-gS-Ee3" secondAttribute="leading" constant="8" id="ubc-w0-KHv"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -82,17 +78,18 @@
             <connections>
                 <outlet property="containerView" destination="H2p-sc-9uM" id="Um3-5o-4qN"/>
                 <outlet property="dateBackgroundView" destination="ua9-X5-6WG" id="r3S-dv-Xu9"/>
+                <outlet property="dateHeightConstraint" destination="xko-tz-Thz" id="mG7-rm-9ne"/>
+                <outlet property="dateTopConstraint" destination="fxI-L5-kqd" id="5Uq-lO-T5P"/>
                 <outlet property="todoBackgroundView" destination="Ab9-gS-Ee3" id="pmQ-rT-p69"/>
                 <outlet property="todoDateLabel" destination="Jp2-nH-XVn" id="Mkv-0b-bbz"/>
                 <outlet property="todoLabel" destination="ufh-Qj-SZY" id="s4a-pj-ESA"/>
-                <outlet property="todoStateIndicatorImageView" destination="Cro-Ug-6L0" id="xWQ-cG-n5W"/>
+                <outlet property="todoTagHeightConstraint" destination="riW-92-V8C" id="FZb-DH-QzM"/>
                 <outlet property="todoTagLabel" destination="IAj-P2-2Ln" id="UPJ-nN-12o"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="135.9375"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="circle" catalog="system" width="64" height="60"/>
         <namedColor name="Cell-Date-Background">
             <color red="0.078431372549019607" green="0.58823529411764708" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

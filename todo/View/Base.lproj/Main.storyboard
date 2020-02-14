@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="461.5" height="834"/>
                                 <color key="backgroundColor" name="Header-Background"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
                                 <rect key="frame" x="11.5" y="629" width="438.5" height="85"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>

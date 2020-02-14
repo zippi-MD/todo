@@ -49,10 +49,13 @@ class AddTodo: UIView {
     
     func resignAsFirstResponder() {
         self.todoTextView.resignFirstResponder()
+        self.todoTextView.text = ""
     }
     
     func setAsFirstResponder(){
         self.todoTextView.becomeFirstResponder()
+        self.todoTextView.text = ""
+        self.todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
     }
     
     private func customInit(){
