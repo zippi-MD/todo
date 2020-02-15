@@ -11,19 +11,45 @@ import UIKit
 extension TodosDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let header = HeaderView()
-        let tag = TodoManager.sharedInstance.todoTagsSorted[section]
-        header.headerTag = TodoManager.sharedInstance.todoTagsSorted[section]
-        
-        if let colorName = TodoManager.sharedInstance.getColorForTag(tag) {
-            header.headerTagColor = getColorFrom(colorName)
+        switch detailCompactSelectedSort {
+
+        case .ByTag:
+            let header = HeaderView()
+            let tag = TodoManager.sharedInstance.todoTagsSorted[section]
+            header.headerTag = TodoManager.sharedInstance.todoTagsSorted[section]
+            
+            if let colorName = TodoManager.sharedInstance.getColorForTag(tag) {
+                header.headerTagColor = getColorFrom(colorName)
+            }
+            
+            return header
+            
+        case .ByDateCreated:
+            return nil
+            
+        case .ByDateScheduled:
+            return nil
+
         }
         
-        return header
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        Constants.TodoDetailTableViewHeaderHeight
+        
+        switch detailCompactSelectedSort {
+
+        case .ByTag:
+            return Constants.TodoDetailTableViewHeaderHeight
+            
+        case .ByDateCreated:
+            return 0
+            
+        case .ByDateScheduled:
+            return 0
+
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

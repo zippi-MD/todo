@@ -25,6 +25,9 @@ class TodosDetailViewController: UIViewController {
     let sortTodosOptions: [SortOptions] = [.ByTag, .ByDateCreated, .ByDateScheduled]
     var detailCompactSelectedSort: SortOptions = .ByTag {
         willSet {
+            TodoManager.sharedInstance.sortTodosBy = newValue
+        }
+        didSet {
             detailTableView.reloadData()
         }
     }
@@ -53,6 +56,8 @@ class TodosDetailViewController: UIViewController {
         detailTableView.delegate = self
         detailTableView.dataSource = self
         detailTableView.allowsMultipleSelectionDuringEditing = false
+        
+        TodoManager.sharedInstance.delegate = self
         
         if let todos = fetchedResultsController.fetchedObjects {
             TodoManager.sharedInstance.todos = todos
@@ -131,6 +136,22 @@ class TodosDetailViewController: UIViewController {
 
 // MARK: - Handle Keyboard Events
 extension TodosDetailViewController: KeyboardHandlingDelegate {
+    func keyboardDidShow(_ notification: Notification) {
+         
+    }
+    
+    func keyboardDidHide(_ notification: Notification) {
+         
+    }
+    
+    func keyboardWillChangeFrame(_ notification: Notification) {
+         
+    }
+    
+    func keyboardDidChangeFrame(_ notification: Notification) {
+         
+    }
+    
     func keyboardWillShow(_ notification: Notification) {
         
         toolbarView.isHidden = false
@@ -140,9 +161,9 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
         
         if let keyboardHeight = keyboardSize?.height, let animationDuration = notification.keyboardAnimationDuration {
             UIView.animate(withDuration: animationDuration, animations: {
-                self.addTodoBottomConstraint.constant = keyboardHeight + 50.0
+                self.addTodoBottomConstraint.constant = keyboardHeight + 75.0
                 self.toolbarView.alpha = 1
-                self.toolbarBottomConstraint.constant = keyboardHeight - 35.0
+                self.toolbarBottomConstraint.constant = keyboardHeight
                 self.view.layoutIfNeeded()
             }) { (_) in
                 
@@ -150,11 +171,7 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
         }
         
     }
-    
-    func keyboardDidShow(_ notification: Notification) {
-        
-    }
-    
+
     func keyboardWillHide(_ notification: Notification) {
         if actualTodoDetailState == .discard {
             UIView.animate(withDuration: 0.25) {
@@ -173,18 +190,6 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
                  
             }
         }
-    }
-    
-    func keyboardDidHide(_ notification: Notification) {
-        
-    }
-    
-    func keyboardWillChangeFrame(_ notification: Notification) {
-        
-    }
-    
-    func keyboardDidChangeFrame(_ notification: Notification) {
-        
     }
     
     
@@ -292,11 +297,11 @@ extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
     
     
 
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 //        detailTableView.beginUpdates()
-//    }
+    }
 //
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
 //        switch type {
 //            case .insert:
 //                detailTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
@@ -305,10 +310,10 @@ extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
 //            default:
 //                return
 //        }
-//    }
+    }
 //
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
 //        switch type {
 //            case .insert:
 //                detailTableView.insertRows(at: [newIndexPath!], with: .fade)
@@ -321,11 +326,14 @@ extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
 //            default:
 //                return
 //        }
-//    }
+    }
 //
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 //        detailTableView.endUpdates()
-//    }
+        if let todos = fetchedResultsController.fetchedObjects {
+            TodoManager.sharedInstance.todos = todos
+        }
+    }
 }
 
 
@@ -368,3 +376,9 @@ extension TodosDetailViewController {
     }
 }
 
+//MARK: -Handle TodoManager Delegate
+extension TodosDetailViewController: TodoManagerDelegate {
+    func didFinishSortingTodos() {
+        detailTableView.reloadData()
+    }
+}
