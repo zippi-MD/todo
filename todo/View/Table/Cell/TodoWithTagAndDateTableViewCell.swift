@@ -13,21 +13,17 @@ enum TodoState {
     case incomplete
 }
 
-class TodoTableViewCell: UITableViewCell {
+class TodoWithTagAndDateTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var todoTagLabel: UILabel!
-    @IBOutlet weak var dateBackgroundView: UIView! {
+    @IBOutlet weak var todoDateLabel: UILabel!
+    @IBOutlet weak var todoBackgroundView: UIView! {
         didSet {
-            dateBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+            todoBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
         }
     }
-    @IBOutlet weak var todoDateLabel: UILabel!
-    @IBOutlet weak var todoBackgroundView: UIView!
 
     @IBOutlet weak var todoLabel: UILabel!
-    @IBOutlet weak var dateHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var todoTagHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dateTopConstraint: NSLayoutConstraint!
     
     var todo: Todo?
     var todoDescription: String? {
@@ -62,11 +58,10 @@ class TodoTableViewCell: UITableViewCell {
     var todoScheduledDate: Date? {
         willSet {
             if let date = newValue {
-                showDate = true
                 todoDateLabel.text = getLocalShortDateFor(date)
             }
             else {
-                showDate = false
+                todoDateLabel.text = ""
             }
         }
     }
@@ -90,15 +85,6 @@ class TodoTableViewCell: UITableViewCell {
         }
     }
     
-    private var showDate: Bool {
-        set {
-            dateBackgroundView.isHidden = !newValue
-        }
-        get {
-            return !dateBackgroundView.isHidden
-        }
-    }
-    
     var showTag: Bool {
         set {
             todoTagLabel.isHidden = !newValue
@@ -107,22 +93,7 @@ class TodoTableViewCell: UITableViewCell {
             return !todoTagLabel.isHidden
         }
     }
-    
-    var hideDateAndTag: Bool = false {
-        willSet {
-            if newValue {
-                todoTagHeightConstraint.constant = 0
-                dateHeightConstraint.constant = 0
-                dateTopConstraint.constant = 0
-            }
-            else {
-                todoTagHeightConstraint.constant = 20
-                dateHeightConstraint.constant = 25
-                dateTopConstraint.constant = 8
-            }
-        }
-    }
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

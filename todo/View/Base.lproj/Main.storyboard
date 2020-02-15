@@ -16,9 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="461.5" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
                                 <rect key="frame" x="46" y="71" width="369.5" height="763"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAf-aC-cL8">
                                 <rect key="frame" x="214.5" y="785" width="33" height="41"/>
@@ -34,7 +34,7 @@
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGN-bq-kWV">
                                 <rect key="frame" x="0.0" y="0.0" width="461.5" height="834"/>
-                                <color key="backgroundColor" name="Header-Background"/>
+                                <color key="backgroundColor" white="1" alpha="0.90188891270000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
                                 <rect key="frame" x="11.5" y="629" width="438.5" height="85"/>
@@ -59,7 +59,7 @@
                                 <variation key="widthClass=regular" hidden="NO"/>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="TableBackground"/>
                         <constraints>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="1Hc-bW-jPc"/>
                             <constraint firstItem="Diu-mW-43P" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="2y0-85-Pbi"/>
@@ -172,8 +172,8 @@
     <resources>
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="plus.circle" catalog="system" width="64" height="60"/>
-        <namedColor name="Header-Background">
-            <color red="1" green="1" blue="1" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="TableBackground">
+            <color red="0.79607843137254897" green="0.94509803921568625" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

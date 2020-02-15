@@ -81,7 +81,7 @@ class TodosDetailViewController: UIViewController {
         let discardTap = UITapGestureRecognizer(target: self, action: #selector(addTodoBackgroundViewWasSelected))
         addTodoBackgroundView.addGestureRecognizer(discardTap)
         
-        detailTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)
+        detailTableView.register(UINib(nibName: "TodoWithTagAndDateTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)
     }
     
     @IBAction func addTodoButtonTapped(_ sender: UIButton) {
