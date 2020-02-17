@@ -21,6 +21,7 @@ protocol TodoManagerDelegate: class {
 class TodoManager {
     
     static let sharedInstance = TodoManager()
+    
     weak var delegate: TodoManagerDelegate?
     var sortTodosBy: SortOptions = .ByTag
     
@@ -30,21 +31,27 @@ class TodoManager {
         didSet {
             getTodosTags()
             todoTagsSorted = Array(todosTags).sorted()
-            needsToSort = true
             sortTodos()
         }
     }
     
     var todosByTag = [String: [Todo]]()
     
-    var numberOfSections: Int { todosTags.count }
+    var numberOfSections: Int {
+        switch sortTodosBy {
+        case .ByTag:
+            return todosTags.count
+        case .ByDateCreated, .ByDateScheduled:
+            return 1
+
+        }
+    }
     
     private(set) var todoTagsSorted = [String]()
     
     private var todosSortedByDateScheduled = [Todo]()
     private var todosSortedByDateCreated = [Todo]()
     private var todosSortedByTag = [String: [Todo]]()
-    private var needsToSort: Bool = false
     
     private func getTodosTags() {
         for todo in todos {
@@ -62,13 +69,9 @@ class TodoManager {
     
     private func sortTodos(){
         
-        if !needsToSort { return }
-        
-        needsToSort = false
-        
         todosSortedByDateCreated = todos.sorted(by: { (lhs, rhs) -> Bool in
             if let lhsDate = lhs.dateCreation, let rhsDate = rhs.dateCreation {
-                return lhsDate > rhsDate
+                return lhsDate < rhsDate
             }
             return true
         })
@@ -85,7 +88,7 @@ class TodoManager {
         
         todosWithScheduleDate.sort(by: { (lhs, rhs) -> Bool in
             if let lhsDate = lhs.dateScheduled, let rhsDate = rhs.dateScheduled {
-                return lhsDate > rhsDate
+                return lhsDate < rhsDate
             }
             return true
         })
@@ -99,14 +102,14 @@ class TodoManager {
         
         todosWithoutScheduleDate = todosWithoutScheduleDate.sorted(by: { (lhs, rhs) -> Bool in
             if let lhsDate = lhs.dateCreation, let rhsDate = rhs.dateCreation {
-                return lhsDate > rhsDate
+                return lhsDate < rhsDate
             }
             return true
         })
         
         todosSortedByDateScheduled = todosWithScheduleDate + todosWithoutScheduleDate
         
-        
+        todosSortedByTag.removeAll(keepingCapacity: true)
         for todo in todosSortedByDateScheduled {
             if let tag = todo.tagName {
                 if let _ = todosSortedByTag[tag] {
