@@ -2,24 +2,26 @@
 //  TodoTableViewCell.swift
 //  todo
 //
-//  Created by Alejandro Mendoza on 16/02/20.
+//  Created by Alejandro Mendoza on 15/01/20.
 //  Copyright © 2020 Alejandro Mendoza. All rights reserved.
 //
 
 import UIKit
 
-class TodoTableViewCell: UITableViewCell {
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var todoBackgroundView: UIView! {
+class TodoWithTagAndDateTableViewCell: UITableViewCell {
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var todoBackgroundView: UIView! {
         didSet {
             todoBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
         }
     }
-    @IBOutlet weak var todoLabel: UILabel!
+    @IBOutlet private weak var todoTagLabel: UILabel!
     @IBOutlet private weak var todoDateLabel: UILabel!
+
+
+    @IBOutlet private weak var todoLabel: UILabel!
     
     var todo: Todo?
-    var todoTag: String?
     var todoDescription: String? {
         set {
             if let tag = todoTag {
@@ -32,6 +34,20 @@ class TodoTableViewCell: UITableViewCell {
         
         get {
             return todoLabel.text ?? ""
+        }
+    }
+    
+    var todoTag: String? {
+        set {
+            if let tag = newValue, let location = getLocationOfTagFrom(tag, beginningWith: Constants.TagIdentifier), let tagBackgroundIdentifier = TagBackgroundColors.allCases.randomElement(), let color = UIColor(named: tagBackgroundIdentifier.rawValue) {
+                
+                let highlightedTag = getHighlightedTextFor(tag, withLocation: location, color: color, wide: true)
+                
+                todoTagLabel.attributedText = highlightedTag
+            }
+        }
+        get {
+            return todoTagLabel.text
         }
     }
     
@@ -48,13 +64,10 @@ class TodoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

@@ -12,14 +12,12 @@ enum TagBackgroundColors: String, CaseIterable {
     case TagBlue1 = "Tag-Blue-1"
     case TagGreen1 = "Tag-Green-1"
     case TagGreen2 = "Tag-Green-2"
-    case TagGreen3 = "Tag-Green-3"
     case TagOrange1 = "Tag-Orange-1"
     case TagPink1 = "Tag-Pink-1"
-    case TagPink2 = "Tag-Pink-2"
     case TagPurple1 = "Tag-Purple-1"
     case TarPurple2 = "Tag-Purple-2"
     case TagRed1 = "Tag-Red-1"
-    case TagYellow1 = "Tag-Yellow-1"
+    case TagRed2 = "Tag-Red-2"
 }
 
 enum TodoCellColors: String {

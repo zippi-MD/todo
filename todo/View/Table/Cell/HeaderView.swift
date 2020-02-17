@@ -18,26 +18,29 @@ class HeaderView: UIView {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var starActionImageView: UIImageView!
     @IBOutlet weak var shareActionImageView: UIImageView!
     @IBOutlet weak var addActionImageView: UIImageView!
+    @IBOutlet weak var headerBackgroundView: UIView! {
+        didSet {
+            headerBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
     
     weak var delegate: HeaderViewDelegate?
     
-    var headerTagColor: UIColor = UIColor.systemPink
-    var headerTag: String = "" {
+    var headerTagColor: UIColor = UIColor.systemPink {
         willSet {
-            if var location = getLocationOfTagFrom(newValue, beginningWith: "#") {
-                let attributed = getHighlightedTextFor(newValue, withLocation: location, color: headerTagColor, wide: true)
+            if  let location = getLocationOfTagFrom(headerTag, beginningWith: "#") {
+                let attributed = getHighlightedTextFor(headerTag, withLocation: location, color: newValue, wide: true)
                 tagLabel.attributedText = attributed
             }
         }
     }
-    
-    var isStared: Bool = false {
+    var headerTag: String = "" {
         willSet {
-            if newValue {
-                starActionImageView.image = UIImage(systemName: "star.fill")
+            if let location = getLocationOfTagFrom(newValue, beginningWith: "#") {
+                let attributed = getHighlightedTextFor(newValue, withLocation: location, color: headerTagColor, wide: true)
+                tagLabel.attributedText = attributed
             }
         }
     }
@@ -63,9 +66,6 @@ class HeaderView: UIView {
     }
     
     func addGestureRecognizerToActions(){
-        let starTap = UITapGestureRecognizer(target: self, action: #selector(starActionWasSelected))
-        starActionImageView.addGestureRecognizer(starTap)
-        
         let shareTap = UITapGestureRecognizer(target: self, action: #selector(shareActionWasSelected))
         shareActionImageView.addGestureRecognizer(shareTap)
         

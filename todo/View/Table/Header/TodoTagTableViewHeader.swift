@@ -10,7 +10,11 @@ import UIKit
 
 class TodoTagTableViewHeader: UIView {
 
-    @IBOutlet weak var HeaderBackgroundView: UIView!
+    @IBOutlet weak var HeaderBackgroundView: UIView! {
+        didSet {
+            HeaderBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
     @IBOutlet weak var TagBackgroundView: UIView!
     @IBOutlet weak var TagLabel: UILabel!
     

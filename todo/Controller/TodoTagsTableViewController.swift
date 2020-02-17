@@ -34,7 +34,7 @@ class TodoTagsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return TodoManager.sharedInstance.numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,9 +43,11 @@ class TodoTagsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath) as! TodoTagTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath)
         
-        cell.headerTag = "Test"
+        guard let masterViewCell = cell as? TodoTagTableViewCell, let tag = TodoManager.sharedInstance.tagForIndexPath(indexPath) else { return cell }
+        
+        masterViewCell.headerTag = tag
         
         return cell
     }

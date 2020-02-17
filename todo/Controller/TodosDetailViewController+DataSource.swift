@@ -11,25 +11,44 @@ import UIKit
 extension TodosDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return TodoManager.sharedInstance.numberOfRowsInSection(section)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailTodoCellIdentifier, for: indexPath)
-        guard let todoCell = cell as? TodoTableViewCell else { return cell }
         
-        
-        let testTag = "#Something"
-        
-        if let location = getLocationOfTagFrom(testTag, beginningWith: Constants.TagIdentifier), let tagBackgroundIdentifier = TagBackgroundColors.allCases.randomElement(), let color = UIColor(named: tagBackgroundIdentifier.rawValue) {
+        switch detailCompactSelectedSort {
             
-            let highlightedTag = getHighlightedTextFor(testTag, withLocation: location, color: color, wide: true)
+        case .ByTag:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailTodoCellIdentifier, for: indexPath)
+            guard let todoCell = cell as? TodoTableViewCell, let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return cell }
             
-            todoCell.todoTag = highlightedTag
+            todoCell.todo = todo
+            todoCell.todoTag = todo.tagName
+            todoCell.todoDescription = todo.todoDescription
+            todoCell.todoScheduledDate = todo.dateScheduled
+            
+            return todoCell
+            
+        case .ByDateCreated, .ByDateScheduled:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailTodoCellWithTagIdentifier, for: indexPath)
+            guard let todoCell = cell as? TodoWithTagAndDateTableViewCell, let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return cell }
+            
+            todoCell.todo = todo
+            todoCell.todoTag = todo.tagName
+            todoCell.todoDescription = todo.todoDescription
+            todoCell.todoScheduledDate = todo.dateScheduled
+            
+            return todoCell
+            
         }
         
-        return cell
+        
+        
+        
     }
     
     

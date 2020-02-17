@@ -15,7 +15,12 @@ class TodoTagTableViewCell: UITableViewCell {
     
     var headerTag: String {
         set {
-            TagLabel.text = "# \(newValue)"
+            if let location = getLocationOfTagFrom(newValue, beginningWith: Constants.TagIdentifier), let tagBackgroundIdentifier = TagBackgroundColors.allCases.randomElement(), let color = UIColor(named: tagBackgroundIdentifier.rawValue) {
+                
+                let highlightedTag = getHighlightedTextFor(newValue, withLocation: location, color: color, wide: true)
+                
+                TagLabel.attributedText = highlightedTag
+            }
         }
         get {
             let tagValue = TagLabel.text!
@@ -26,14 +31,11 @@ class TodoTagTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        TagBackgroundView.layer.cornerRadius = 4.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }
