@@ -49,8 +49,6 @@ class TodosDetailViewController: UIViewController {
     var _fetchedResultsController: NSFetchedResultsController<Todo>? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
     
-    var newTodoScheduleDate: Date?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardHandler.registerForKeyboardEvents()
@@ -93,6 +91,8 @@ class TodosDetailViewController: UIViewController {
     @IBAction func addTodoButtonTapped(_ sender: UIButton) {
         actualTodoDetailState = .present
         let animationDuration: TimeInterval = 0.25
+        
+        addTodoView.todoScheduleDate = nil
         addTodoView.alpha = 0
         addTodoView.isHidden = false
         
@@ -101,14 +101,10 @@ class TodosDetailViewController: UIViewController {
         
         UIView.animate(withDuration: animationDuration, animations: {
             self.addTodoView.alpha = 1
+            self.addTodoBackgroundView.alpha = 0.8
             self.addTodoBottomConstraint.constant = self.view.frame.height * 0.4
             self.view.layoutIfNeeded()
         }) { (_) in
-            
-            UIView.animate(withDuration: animationDuration) {
-                self.addTodoBackgroundView.alpha = 1
-            }
-            
             self.addTodoView.setAsFirstResponder()
         }
     }
@@ -129,6 +125,7 @@ class TodosDetailViewController: UIViewController {
         newTodo.tagName = configuration.tagName
         newTodo.todoDescription = configuration.todoDescription
         newTodo.dateCreation = configuration.dateCreation
+        newTodo.dateScheduled = configuration.dateScheduled
         newTodo.tagColor = configuration.tagColor
         
         do {
@@ -139,6 +136,8 @@ class TodosDetailViewController: UIViewController {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
+        
+        discardActionWasSelected()
     }
     
     @objc func addTodoBackgroundViewWasSelected(){
@@ -206,12 +205,7 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
                 self.todoDatePickerView.alpha = 1
                 self.todoDatePickerBottomConstraint.constant = 0
                 self.view.layoutIfNeeded()
-            }) { (_) in
-                
-                UIView.animate(withDuration: animationDuration) {
-                    
-                }
-            }
+            })
         }
     }
     
@@ -225,7 +219,8 @@ extension TodosDetailViewController: ToolbarDelegate {
         let todoConfiguration = TodoConfiguration(tagName: addTodoView.todoTagName,
                                                   tagColor: addTodoView.tagColor.rawValue,
                                                   todoDescription: addTodoView.todoDescription,
-                                                  dateCreation: Date())
+                                                  dateCreation: Date(),
+                                                  dateScheduled: addTodoView.todoScheduleDate)
         insertNewTodo(todoConfiguration)
     }
     
@@ -250,6 +245,7 @@ extension TodosDetailViewController: ToolbarDelegate {
             self.addTodoView.isHidden = true
         }
         
+        addTodoView.resetValues()
     }
     
     
@@ -409,13 +405,13 @@ extension TodosDetailViewController: TodoManagerDelegate {
 //MARK: -Handle TodoDatePicker Delegate
 extension TodosDetailViewController: TodoDatePickerDelegate {
     func acceptActionWasSelectedWithDate(date: Date) {
-        newTodoScheduleDate = date
+        addTodoView.todoScheduleDate = date
         actualTodoDetailState = .present
         addTodoView.setAsFirstResponder()
     }
     
     func cancelActionWasSelected() {
-        newTodoScheduleDate = nil
+        addTodoView.todoScheduleDate = nil
         actualTodoDetailState = .present
         addTodoView.setAsFirstResponder()
     }

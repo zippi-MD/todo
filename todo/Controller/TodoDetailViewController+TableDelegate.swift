@@ -114,7 +114,7 @@ extension TodosDetailViewController: UITableViewDelegate {
             
         }
         
-        trashAction.backgroundColor = UIColor(named: TagBackgroundColors.TagRed1.rawValue)
+        trashAction.backgroundColor = UIColor(named: TagBackgroundColors.TagRed2.rawValue)
         trashAction.image = UIImage(systemName: "trash")
         
         return UISwipeActionsConfiguration(actions: [trashAction])

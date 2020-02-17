@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="Fdx-UD-faZ"/>
                 <outlet property="todoBackgroundView" destination="nKI-cb-KoO" id="RQY-og-36g"/>
+                <outlet property="todoDateLabel" destination="t0t-SJ-YJF" id="8rS-2O-a2j"/>
                 <outlet property="todoTextView" destination="3PA-Tr-5IE" id="V3M-qL-g9E"/>
             </connections>
         </placeholder>
@@ -23,20 +24,40 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKI-cb-KoO">
                     <rect key="frame" x="-3.5" y="0.0" width="727" height="149"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3PA-Tr-5IE">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MqQ-hl-Iyl">
                             <rect key="frame" x="18" y="15" width="691" height="119"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3PA-Tr-5IE">
+                                    <rect key="frame" x="0.0" y="8" width="691" height="111"/>
+                                    <color key="backgroundColor" name="Cell-Label-Background"/>
+                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0t-SJ-YJF">
+                                    <rect key="frame" x="683" y="8" width="0.0" height="0.0"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" name="Cell-Label-Background"/>
-                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
+                            <constraints>
+                                <constraint firstItem="t0t-SJ-YJF" firstAttribute="top" secondItem="MqQ-hl-Iyl" secondAttribute="top" constant="8" id="7nR-yS-bhV"/>
+                                <constraint firstAttribute="bottom" secondItem="3PA-Tr-5IE" secondAttribute="bottom" id="AxQ-Nl-70M"/>
+                                <constraint firstItem="3PA-Tr-5IE" firstAttribute="leading" secondItem="MqQ-hl-Iyl" secondAttribute="leading" id="PXH-n5-JyL"/>
+                                <constraint firstItem="3PA-Tr-5IE" firstAttribute="top" secondItem="t0t-SJ-YJF" secondAttribute="bottom" id="cnY-58-hjs"/>
+                                <constraint firstAttribute="trailing" secondItem="t0t-SJ-YJF" secondAttribute="trailing" constant="8" id="deO-nD-9bC"/>
+                                <constraint firstAttribute="trailing" secondItem="3PA-Tr-5IE" secondAttribute="trailing" id="pHE-1X-7he"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" name="Toolbar-Background"/>
                     <constraints>
-                        <constraint firstItem="3PA-Tr-5IE" firstAttribute="centerY" secondItem="nKI-cb-KoO" secondAttribute="centerY" id="Jg1-Iu-kXz"/>
-                        <constraint firstItem="3PA-Tr-5IE" firstAttribute="width" secondItem="nKI-cb-KoO" secondAttribute="width" multiplier="0.95" id="QEp-wE-M2f"/>
-                        <constraint firstItem="3PA-Tr-5IE" firstAttribute="height" secondItem="nKI-cb-KoO" secondAttribute="height" multiplier="0.8" id="YX1-8C-BsL"/>
-                        <constraint firstItem="3PA-Tr-5IE" firstAttribute="centerX" secondItem="nKI-cb-KoO" secondAttribute="centerX" id="oJa-ea-5Co"/>
+                        <constraint firstItem="MqQ-hl-Iyl" firstAttribute="centerY" secondItem="nKI-cb-KoO" secondAttribute="centerY" id="HIB-z1-UE0"/>
+                        <constraint firstItem="MqQ-hl-Iyl" firstAttribute="height" secondItem="nKI-cb-KoO" secondAttribute="height" multiplier="0.8" id="VHe-wO-5rW"/>
+                        <constraint firstItem="MqQ-hl-Iyl" firstAttribute="width" secondItem="nKI-cb-KoO" secondAttribute="width" multiplier="0.95" id="fci-BR-GW2"/>
+                        <constraint firstItem="MqQ-hl-Iyl" firstAttribute="centerX" secondItem="nKI-cb-KoO" secondAttribute="centerX" id="qMY-TW-G9C"/>
                     </constraints>
                 </view>
             </subviews>

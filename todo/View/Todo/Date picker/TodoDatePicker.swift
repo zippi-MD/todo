@@ -80,7 +80,7 @@ class TodoDatePicker: UIView {
 }
 
 
-//Mark: - Handle UserInterfaceStyle
+//MARK: - Handle UserInterfaceStyle
 extension TodoDatePicker {
     private func updateUIForStyle(style: UIUserInterfaceStyle) {
         guard let actionViews = actionView else { return }
@@ -100,3 +100,17 @@ extension TodoDatePicker {
     }
 }
 
+
+// MARK: TraitCollection
+extension TodoDatePicker {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection == previousTraitCollection {
+            return
+        }
+        
+        updateUIForStyle(style: traitCollection.userInterfaceStyle)
+        
+    }
+}
