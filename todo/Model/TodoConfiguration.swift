@@ -12,6 +12,7 @@ struct TodoConfiguration {
     let tagColor: String?
     let todoDescription: String?
     let dateCreation: Date
+    let dateScheduled: Date?
     let completed: Bool = false
     
 }

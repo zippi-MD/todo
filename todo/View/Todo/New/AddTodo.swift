@@ -14,6 +14,7 @@ class AddTodo: UIView {
     @IBOutlet private weak var todoBackgroundView: UIView!
     
     @IBOutlet private weak var todoTextView: UITextView!
+    @IBOutlet weak var todoDateLabel: UILabel!
     
     let todoManager = TodoManager.sharedInstance
     
@@ -21,6 +22,16 @@ class AddTodo: UIView {
     var todoDescription: String {
         get {
             todoTextView.text
+        }
+    }
+    var todoScheduleDate: Date? {
+        willSet {
+            if let date = newValue {
+                todoDateLabel.text = getLocalShortDateFor(date)
+            }
+            else {
+                todoDateLabel.text = ""
+            }
         }
     }
     private var todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
@@ -49,11 +60,13 @@ class AddTodo: UIView {
     
     func resignAsFirstResponder() {
         self.todoTextView.resignFirstResponder()
-        self.todoTextView.text = ""
     }
     
     func setAsFirstResponder(){
         self.todoTextView.becomeFirstResponder()
+    }
+    
+    func resetValues() {
         self.todoTextView.text = ""
         self.todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
     }

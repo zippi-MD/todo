@@ -16,23 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGN-bq-kWV">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="0.90188891270000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PTx-ao-2GX">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" name="TableBackground"/>
                             </tableView>
+                            <view hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGN-bq-kWV">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" name="TableBackground"/>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU5-cD-dnC" customClass="AddTodo" customModule="todo" customModuleProvider="target">
-                                <rect key="frame" x="9.5" y="282" width="356" height="85"/>
+                                <rect key="frame" x="9.5" y="542" width="356" height="85"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="MdE-1W-YYp"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pxo-Lf-XcJ" customClass="Toolbar" customModule="todo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="407" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="587" width="375" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7Dk-Ds-PFd"/>
@@ -96,7 +96,7 @@
                             <constraint firstItem="uU5-cD-dnC" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="Fyj-8N-fJP"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Diu-mW-43P" secondAttribute="bottom" constant="8" id="HbN-P8-gBV"/>
                             <constraint firstItem="UGN-bq-kWV" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="IaR-B4-Aj9"/>
-                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="Pxo-Lf-XcJ" secondAttribute="bottom" constant="200" id="Lsv-sl-G9h"/>
+                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="Pxo-Lf-XcJ" secondAttribute="bottom" constant="20" id="Lsv-sl-G9h"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="Rqw-Qd-DT2"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="width" secondItem="E1F-KJ-UXI" secondAttribute="width" multiplier="0.8" id="TT9-aZ-BRw"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="DRD-sH-geH" secondAttribute="bottom" id="W31-LT-Ugg"/>
@@ -118,7 +118,7 @@
                             <constraint firstItem="uU5-cD-dnC" firstAttribute="width" secondItem="E1F-KJ-UXI" secondAttribute="width" multiplier="0.95" id="sEa-4f-dnK"/>
                             <constraint firstItem="Diu-mW-43P" firstAttribute="centerY" secondItem="rAf-aC-cL8" secondAttribute="centerY" id="tr9-Fb-AAK"/>
                             <constraint firstItem="DRD-sH-geH" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" constant="15" id="x69-jO-Nmw"/>
-                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="uU5-cD-dnC" secondAttribute="bottom" constant="300" id="xAH-Kv-Gse"/>
+                            <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="uU5-cD-dnC" secondAttribute="bottom" constant="40" id="xAH-Kv-Gse"/>
                             <constraint firstAttribute="bottom" secondItem="PTx-ao-2GX" secondAttribute="bottom" id="xC5-Tj-1VP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8ZC-tY-1uZ"/>
