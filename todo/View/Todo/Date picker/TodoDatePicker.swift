@@ -9,18 +9,27 @@
 import UIKit
 
 protocol TodoDatePickerDelegate: class {
-    func acceptActionWasSelected()
+    func acceptActionWasSelectedWithDate(date: Date)
     func cancelActionWasSelected()
 }
 
 class TodoDatePicker: UIView {
 
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var acceptActionBackground: UIView!
+    @IBOutlet private weak var containerView: UIView! {
+        didSet {
+            containerView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
+    @IBOutlet private weak var actionsBackgroundView: UIView! {
+        didSet {
+            actionsBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
+    @IBOutlet private weak var acceptActionBackground: UIView!
+    @IBOutlet private weak var cancelActionBackground: UIView!
+    @IBOutlet private weak var todoDatePicker: UIDatePicker!
     
-    @IBOutlet weak var cancelActionBackground: UIView!
-    
-    let actionsCornerRadius: CGFloat = 7.0
+    private var actionView: [UIView]?
     
     weak var delegate: TodoDatePickerDelegate?
     
@@ -34,7 +43,7 @@ class TodoDatePicker: UIView {
         customInit()
     }
     
-    func customInit(){
+    private func customInit(){
         let bundle = Bundle(for: AddTodo.self)
         bundle.loadNibNamed(String(describing: TodoDatePicker.self), owner: self, options: nil)
         addSubview(containerView)
@@ -43,14 +52,16 @@ class TodoDatePicker: UIView {
         
         setupActionsCornerRadius()
         addGestureRecognizerToActions()
+        actionView = [acceptActionBackground, cancelActionBackground]
+        updateUIForStyle(style: traitCollection.userInterfaceStyle)
     }
     
-    func setupActionsCornerRadius(){
-        acceptActionBackground.layer.cornerRadius = actionsCornerRadius
-        cancelActionBackground.layer.cornerRadius = actionsCornerRadius
+    private func setupActionsCornerRadius(){
+        acceptActionBackground.layer.cornerRadius = Constants.TodoCornerRadius
+        cancelActionBackground.layer.cornerRadius = Constants.TodoCornerRadius
     }
     
-    func addGestureRecognizerToActions(){
+    private func addGestureRecognizerToActions(){
         let acceptTap = UITapGestureRecognizer(target: self, action: #selector(acceptActionWasSelected))
         acceptActionBackground.addGestureRecognizer(acceptTap)
         
@@ -58,13 +69,34 @@ class TodoDatePicker: UIView {
         cancelActionBackground.addGestureRecognizer(cancelTap)
     }
     
-    @objc func acceptActionWasSelected(){
-        delegate?.acceptActionWasSelected()
+    @objc private func acceptActionWasSelected(){
+        let selectedDate = todoDatePicker.date
+        delegate?.acceptActionWasSelectedWithDate(date: selectedDate)
     }
     
-    @objc func cancelActionWasSelected(){
+    @objc private func cancelActionWasSelected(){
         delegate?.cancelActionWasSelected()
     }
 }
 
+
+//Mark: - Handle UserInterfaceStyle
+extension TodoDatePicker {
+    private func updateUIForStyle(style: UIUserInterfaceStyle) {
+        guard let actionViews = actionView else { return }
+        
+        switch style {
+        case .light, .unspecified:
+            for actionView in actionViews {
+                actionView.layer.borderWidth = 0
+            }
+        case .dark:
+            for actionView in actionViews {
+                actionView.layer.borderWidth = Constants.ToolbarActionBorderWidth
+            }
+        @unknown default:
+            assert(true, "Missing UserInterfaceStyle")
+        }
+    }
+}
 

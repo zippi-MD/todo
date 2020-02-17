@@ -33,6 +33,8 @@
 		D4A7D04E23C9323E001C8E37 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7D04D23C9323E001C8E37 /* AttributedString.swift */; };
 		D4B9E0C123E903AE004B2735 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9E0C023E903AE004B2735 /* Colors.swift */; };
 		D4B9E0C323E91C5D004B2735 /* TodoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */; };
+		D4BB4D6223F9AE98004E31D2 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */; };
+		D4BB4D6323F9AE98004E31D2 /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BB4D6123F9AE98004E31D2 /* TodoTableViewCell.xib */; };
 		D4ED92D123CE2DA400894E90 /* TodoDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4ED92D023CE2DA400894E90 /* TodoDatePicker.xib */; };
 		D4ED92D323CE2DB200894E90 /* TodoDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED92D223CE2DB200894E90 /* TodoDatePicker.swift */; };
 		D4ED92D723CED6B100894E90 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4ED92D623CED6B100894E90 /* HeaderView.xib */; };
@@ -73,6 +75,8 @@
 		D4A7D04D23C9323E001C8E37 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D4B9E0C023E903AE004B2735 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoConfiguration.swift; sourceTree = "<group>"; };
+		D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		D4BB4D6123F9AE98004E31D2 /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
 		D4ED92D023CE2DA400894E90 /* TodoDatePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDatePicker.xib; sourceTree = "<group>"; };
 		D4ED92D223CE2DB200894E90 /* TodoDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDatePicker.swift; sourceTree = "<group>"; };
 		D4ED92D623CED6B100894E90 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 			children = (
 				D4ED92DF23D01B7700894E90 /* TodoWithTagAndDateTableViewCell.swift */,
 				D4ED92E023D01B7700894E90 /* TodoWithTagAndDateTableViewCell.xib */,
+				D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */,
+				D4BB4D6123F9AE98004E31D2 /* TodoTableViewCell.xib */,
 			);
 			name = TodoCell;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				D4ED92D723CED6B100894E90 /* HeaderView.xib in Resources */,
 				D482DF99239E0DC800C18B82 /* Assets.xcassets in Resources */,
 				D482DF97239E0DC700C18B82 /* Main.storyboard in Resources */,
+				D4BB4D6323F9AE98004E31D2 /* TodoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +364,7 @@
 				D43C395823C452B000560812 /* TodoTagTableViewCell.swift in Sources */,
 				D4ED92D923CED85D00894E90 /* HeaderView.swift in Sources */,
 				D48CE54123C5A2C400BD90E4 /* TodosDetailViewController.swift in Sources */,
+				D4BB4D6223F9AE98004E31D2 /* TodoTableViewCell.swift in Sources */,
 				D4B9E0C323E91C5D004B2735 /* TodoConfiguration.swift in Sources */,
 				D43C395B23C4557200560812 /* Constants.swift in Sources */,
 				D48CE53D23C5958F00BD90E4 /* AddTodo.swift in Sources */,

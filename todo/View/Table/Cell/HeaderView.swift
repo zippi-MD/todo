@@ -20,6 +20,11 @@ class HeaderView: UIView {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var shareActionImageView: UIImageView!
     @IBOutlet weak var addActionImageView: UIImageView!
+    @IBOutlet weak var headerBackgroundView: UIView! {
+        didSet {
+            headerBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
     
     weak var delegate: HeaderViewDelegate?
     

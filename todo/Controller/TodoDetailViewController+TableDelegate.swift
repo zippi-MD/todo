@@ -9,6 +9,8 @@
 import UIKit
 
 extension TodosDetailViewController: UITableViewDelegate {
+    
+    //MARK: -Table Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         switch detailCompactSelectedSort {
@@ -52,6 +54,22 @@ extension TodosDetailViewController: UITableViewDelegate {
         
     }
     
+    
+    //MARK: -Table Footer
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerSectionView = UIView()
+        footerSectionView.backgroundColor = UIColor.clear
+        return footerSectionView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == TodoManager.sharedInstance.numberOfSections - 1 {
+            return 80.0
+        }
+        return 4.0
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         TodoManager.sharedInstance.numberOfSections
     }
@@ -75,5 +93,30 @@ extension TodosDetailViewController: UITableViewDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    
+    
+    //MARK: -Swipe Actions
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let completeAction = UIContextualAction(style: .normal, title: "") { [unowned self](_, _, _) in
+            
+        }
+        
+        completeAction.backgroundColor = UIColor(named: TagBackgroundColors.TagGreen1.rawValue)
+        completeAction.image = UIImage(systemName: "checkmark")
+        
+        return UISwipeActionsConfiguration(actions: [completeAction])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let trashAction = UIContextualAction(style: .normal, title: "") { [unowned self](_, _, _) in
+            
+        }
+        
+        trashAction.backgroundColor = UIColor(named: TagBackgroundColors.TagRed1.rawValue)
+        trashAction.image = UIImage(systemName: "trash")
+        
+        return UISwipeActionsConfiguration(actions: [trashAction])
     }
 }

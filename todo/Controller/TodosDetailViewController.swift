@@ -16,9 +16,20 @@ class TodosDetailViewController: UIViewController {
     @IBOutlet weak var toolbarView: Toolbar!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var addTodoBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todoDatePickerBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var addTodoBackgroundView: UIView!
+    @IBOutlet weak var segmentedControllerCompactBackground: UIView! {
+        didSet {
+            segmentedControllerCompactBackground.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
+    @IBOutlet weak var todoDatePickerView: TodoDatePicker! {
+        didSet {
+            todoDatePickerView.layer.cornerRadius = Constants.TodoCornerRadius
+        }
+    }
     
     let keyboardHandler = KeyboardEvents()
     
@@ -38,14 +49,7 @@ class TodosDetailViewController: UIViewController {
     var _fetchedResultsController: NSFetchedResultsController<Todo>? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
     
-    lazy var sortSegmentedController: UISegmentedControl = {
-        [unowned self] in
-        let titles = self.sortTodosOptions.map { (title) -> String in title.rawValue }
-        let segmentedController = UISegmentedControl(items: titles)
-        segmentedController.selectedSegmentIndex = 0
-        segmentedController.addTarget(self, action: #selector(detailSortedCompactSegmentedControllerChangedValueTo(_:)), for: .valueChanged)
-        return segmentedController
-    }()
+    var newTodoScheduleDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +57,7 @@ class TodosDetailViewController: UIViewController {
         
         keyboardHandler.delegate = self
         toolbarView.delegate = self
+        todoDatePickerView.delegate = self
         detailTableView.delegate = self
         detailTableView.dataSource = self
         detailTableView.allowsMultipleSelectionDuringEditing = false
@@ -81,7 +86,8 @@ class TodosDetailViewController: UIViewController {
         let discardTap = UITapGestureRecognizer(target: self, action: #selector(addTodoBackgroundViewWasSelected))
         addTodoBackgroundView.addGestureRecognizer(discardTap)
         
-        detailTableView.register(UINib(nibName: "TodoWithTagAndDateTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)
+        detailTableView.register(UINib(nibName: "TodoWithTagAndDateTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellWithTagIdentifier)
+        detailTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)
     }
     
     @IBAction func addTodoButtonTapped(_ sender: UIButton) {
@@ -106,6 +112,14 @@ class TodosDetailViewController: UIViewController {
             self.addTodoView.setAsFirstResponder()
         }
     }
+    
+    @IBAction func segmentedSortedOptionsChangedValueTo(_ sender: UISegmentedControl) {
+        let sortOptionIndex = sender.selectedSegmentIndex
+        let sortOption = sortTodosOptions[sortOptionIndex]
+        
+        detailCompactSelectedSort = sortOption
+    }
+    
     
     func insertNewTodo(_ configuration: TodoConfiguration){
         let context = self.fetchedResultsController.managedObjectContext
@@ -163,7 +177,10 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
             UIView.animate(withDuration: animationDuration, animations: {
                 self.addTodoBottomConstraint.constant = keyboardHeight + 75.0
                 self.toolbarView.alpha = 1
-                self.toolbarBottomConstraint.constant = keyboardHeight
+                let bottomSafeInset = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0
+                self.toolbarBottomConstraint.constant = keyboardHeight - bottomSafeInset
+                self.todoDatePickerBottomConstraint.constant = 0
+                self.todoDatePickerView.alpha = 0
                 self.view.layoutIfNeeded()
             }) { (_) in
                 
@@ -186,8 +203,14 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
             UIView.animate(withDuration: animationDuration, animations: {
                 self.toolbarView.alpha = 0
                 self.toolbarBottomConstraint.constant = 0
+                self.todoDatePickerView.alpha = 1
+                self.todoDatePickerBottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
             }) { (_) in
-                 
+                
+                UIView.animate(withDuration: animationDuration) {
+                    
+                }
             }
         }
     }
@@ -361,7 +384,7 @@ extension TodosDetailViewController {
         switch style {
             
         case .compact, .unspecified:
-            navigationItem.titleView = sortSegmentedController
+            navigationController?.navigationBar.isHidden = true
             navigationController?.navigationBar.isTranslucent = true
             navigationItem.setHidesBackButton(true, animated: true)
             
@@ -381,4 +404,21 @@ extension TodosDetailViewController: TodoManagerDelegate {
     func didFinishSortingTodos() {
         detailTableView.reloadData()
     }
+}
+
+//MARK: -Handle TodoDatePicker Delegate
+extension TodosDetailViewController: TodoDatePickerDelegate {
+    func acceptActionWasSelectedWithDate(date: Date) {
+        newTodoScheduleDate = date
+        actualTodoDetailState = .present
+        addTodoView.setAsFirstResponder()
+    }
+    
+    func cancelActionWasSelected() {
+        newTodoScheduleDate = nil
+        actualTodoDetailState = .present
+        addTodoView.setAsFirstResponder()
+    }
+    
+    
 }
