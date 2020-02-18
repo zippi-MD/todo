@@ -15,11 +15,17 @@ class TodoTagTableViewCell: UITableViewCell {
     
     var headerTag: String {
         set {
-            if let location = getLocationOfTagFrom(newValue, beginningWith: Constants.TagIdentifier), let tagBackgroundIdentifier = TagBackgroundColors.allCases.randomElement(), let color = UIColor(named: tagBackgroundIdentifier.rawValue) {
+            if let location = getLocationOfTagFrom(newValue, beginningWith: Constants.TagIdentifier) {
                 
-                let highlightedTag = getHighlightedTextFor(newValue, withLocation: location, color: color, wide: true)
+                let tagColorName = TodoManager.sharedInstance.getColorForTag(newValue) ?? TagBackgroundColors.TagPink1
+                let tagColor = getColorFrom(tagColorName)
+                let highlightedTag = getHighlightedTextFor(newValue, withLocation: location, color: tagColor, wide: true)
                 
                 TagLabel.attributedText = highlightedTag
+                
+            }
+            else {
+                TagLabel.text = ""
             }
         }
         get {
