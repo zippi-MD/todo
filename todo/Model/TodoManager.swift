@@ -54,6 +54,7 @@ class TodoManager {
     private var todosSortedByTag = [String: [Todo]]()
     
     private func getTodosTags() {
+        todosTags.removeAll(keepingCapacity: true)
         for todo in todos {
             let tag = todo.tagName ?? "#Something"
             todosTags.insert(tag)
