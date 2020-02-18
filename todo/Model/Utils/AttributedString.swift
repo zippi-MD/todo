@@ -68,3 +68,22 @@ func getTagFrom(_ string: NSMutableAttributedString, tagLocation location: NSRan
     let tag = string.attributedSubstring(from: location)
     return tag.string
 }
+
+
+func strikeString(_ string: NSAttributedString) -> NSMutableAttributedString {
+    let rangeToStrike = NSRange(location: 0, length: string.length)
+    let textColor = UIColor(named: "TodoText") ?? UIColor.black
+    let stringToStrike = NSMutableAttributedString(attributedString: string)
+    stringToStrike.addAttributes([NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: textColor], range: rangeToStrike)
+    
+    return stringToStrike
+}
+
+
+func removeStrikeFrom(_ attributedString: NSAttributedString) -> NSMutableAttributedString {
+    let rangeToRemoveStrike = NSRange(location: 0, length: attributedString.length)
+    let stringToRemoveStrike = NSMutableAttributedString(attributedString: attributedString)
+    stringToRemoveStrike.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: rangeToRemoveStrike)
+    stringToRemoveStrike.removeAttribute(NSAttributedString.Key.strikethroughColor, range: rangeToRemoveStrike)
+    return stringToRemoveStrike
+}

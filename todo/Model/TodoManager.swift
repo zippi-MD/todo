@@ -152,7 +152,6 @@ class TodoManager {
     }
     
     func todoForIndexPath(_ indexPath: IndexPath) -> Todo? {
-        
         switch sortTodosBy {
             
         case .ByTag:
@@ -164,7 +163,6 @@ class TodoManager {
             return todosSortedByDateScheduled[indexPath.row]
 
         }
-        
     }
     
     func tagForIndexPath(_ indexPath: IndexPath) -> String? {

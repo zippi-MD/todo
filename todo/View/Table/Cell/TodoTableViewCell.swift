@@ -46,6 +46,20 @@ class TodoTableViewCell: UITableViewCell {
         }
     }
     
+    var compleated: Bool = false {
+        willSet {
+            if let todoDescription = todoLabel.attributedText {
+                if newValue {
+                    todoLabel.attributedText = strikeString(todoDescription)
+                }
+                else {
+                    todoLabel.attributedText = removeStrikeFrom(todoDescription)
+                }
+                
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

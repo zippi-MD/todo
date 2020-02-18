@@ -14,5 +14,6 @@ struct Constants {
     static let TodoDetailTableViewHeaderHeight: CGFloat = 70.0
     static let DetailTodoCellWithTagIdentifier: String = "TodoCellWithTag"
     static let DetailTodoCellIdentifier: String = "TodoCell"
+    static let TagCellIdentifier: String = "TagCell"
     static let TagIdentifier: String = "#"
 }
