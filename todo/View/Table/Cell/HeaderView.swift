@@ -9,17 +9,15 @@
 import UIKit
 
 protocol HeaderViewDelegate: class {
-    func starActionSelected()
-    func shareActionSelected()
-    func addActionSelected()
+    func shareActionSelected(_ shareViewController: UIActivityViewController)
+    func addActionSelected(_ tag: String)
 }
 
 class HeaderView: UIView {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var shareActionImageView: UIImageView!
-    @IBOutlet weak var addActionImageView: UIImageView!
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var headerBackgroundView: UIView! {
         didSet {
             headerBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
@@ -62,29 +60,24 @@ class HeaderView: UIView {
         containerView.frame = bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        addGestureRecognizerToActions()
     }
     
-    func addGestureRecognizerToActions(){
-        let shareTap = UITapGestureRecognizer(target: self, action: #selector(shareActionWasSelected))
-        shareActionImageView.addGestureRecognizer(shareTap)
-        
-        let addTap = UITapGestureRecognizer(target: self, action: #selector(addActionWasSelected))
-        addActionImageView.addGestureRecognizer(addTap)
-        
+    @IBAction func headerShareActionWasTapped(_ sender: UIButton) {
+        let todosToShare = TodoManager.sharedInstance.getStringToShareForTodosWithTag(headerTag)
+        if let todosToShare = todosToShare {
+            let items = [todosToShare]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            
+            if let shareController = ac.popoverPresentationController {
+                shareController.sourceView = shareButton
+            }
+            
+            delegate?.shareActionSelected(ac)
+        }
     }
     
-    
-    @objc func starActionWasSelected(){
-        delegate?.starActionSelected()
-    }
-    
-    @objc func shareActionWasSelected(){
-        delegate?.shareActionSelected()
-    }
-    
-    @objc func addActionWasSelected(){
-        delegate?.addActionSelected()
+    @IBAction func headerAddActionWasTapped(_ sender: UIButton) {
+        delegate?.addActionSelected(headerTag)
     }
 
 }

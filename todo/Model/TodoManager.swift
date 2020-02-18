@@ -193,4 +193,25 @@ class TodoManager {
         }
     }
     
+    func getStringToShareForTodosWithTag(_ tag: String) -> String? {
+        guard let todos = todosSortedByTag[tag] else { return nil }
+
+        var shareString = "\(tag)\n"
+        
+        for todo in todos {
+            shareString += "- "
+            shareString += todo.compleated ? "✅ " : ""
+            
+            shareString += todo.todoDescription?.replacingOccurrences(of: tag, with: " ") ?? " "
+            
+            if let todoScheduleDate = todo.dateScheduled {
+                shareString += "[\(getLocalShortDateFor(todoScheduleDate))]"
+            }
+            
+            shareString += "\n"
+            
+        }
+        
+        return shareString
+    }
 }

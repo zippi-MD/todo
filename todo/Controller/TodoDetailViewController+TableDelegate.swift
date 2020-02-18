@@ -23,7 +23,7 @@ extension TodosDetailViewController: UITableViewDelegate {
             if let colorName = TodoManager.sharedInstance.getColorForTag(tag) {
                 header.headerTagColor = getColorFrom(colorName)
             }
-            
+            header.delegate = self
             return header
             
         case .ByDateCreated:

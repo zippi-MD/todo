@@ -14,7 +14,7 @@ class AddTodo: UIView {
     @IBOutlet private weak var todoBackgroundView: UIView!
     
     @IBOutlet private weak var todoTextView: UITextView!
-    @IBOutlet weak var todoDateLabel: UILabel!
+    @IBOutlet private weak var todoDateLabel: UILabel!
     
     let todoManager = TodoManager.sharedInstance
     
@@ -69,6 +69,10 @@ class AddTodo: UIView {
     func resetValues() {
         self.todoTextView.text = ""
         self.todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
+    }
+    
+    func setInitialTagValueWith(_ tag: String) {
+        self.todoTextView.text = tag
     }
     
     private func customInit(){
