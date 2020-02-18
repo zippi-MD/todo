@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="SK3-sh-mt2"/>
                 <outlet property="headerBackgroundView" destination="7On-3g-njj" id="fGv-gv-ybX"/>
+                <outlet property="shareButton" destination="wqO-Nu-7t3" id="Azu-JU-WJ0"/>
                 <outlet property="tagLabel" destination="KEh-eE-Ufp" id="wpO-3l-953"/>
             </connections>
         </placeholder>
@@ -29,7 +30,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="zI2-iO-E6V">
+                        <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="zI2-iO-E6V">
                             <rect key="frame" x="448" y="37" width="77" height="27.5"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqO-Nu-7t3">

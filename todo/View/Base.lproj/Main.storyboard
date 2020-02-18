@@ -181,7 +181,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WxX-Uf-Q1t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="TableBackground"/>
                         <connections>
                             <outlet property="dataSource" destination="kJQ-TN-r1e" id="Kmj-ep-RiM"/>
                             <outlet property="delegate" destination="kJQ-TN-r1e" id="72m-GH-3cb"/>

@@ -88,7 +88,7 @@ class TodosDetailViewController: UIViewController {
         detailTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)
     }
     
-    @IBAction func addTodoButtonTapped(_ sender: UIButton) {
+    @IBAction func addTodoButtonTapped(_ sender: UIButton?) {
         actualTodoDetailState = .present
         let animationDuration: TimeInterval = 0.25
         
@@ -416,5 +416,18 @@ extension TodosDetailViewController: TodoDatePickerDelegate {
         addTodoView.setAsFirstResponder()
     }
     
+    
+}
+
+//MARK: -Header Actions Delegate
+extension TodosDetailViewController: HeaderViewDelegate {
+    func addActionSelected(_ tag: String) {
+        addTodoView.setInitialTagValueWith("\(tag) ")
+        addTodoButtonTapped(nil)
+    }
+    
+    func shareActionSelected(_ shareViewController: UIActivityViewController) {
+        present(shareViewController, animated: true)
+    }
     
 }
