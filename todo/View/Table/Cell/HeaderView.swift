@@ -9,7 +9,6 @@
 import UIKit
 
 protocol HeaderViewDelegate: class {
-    func starActionSelected()
     func shareActionSelected()
     func addActionSelected()
 }
@@ -18,8 +17,6 @@ class HeaderView: UIView {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var shareActionImageView: UIImageView!
-    @IBOutlet weak var addActionImageView: UIImageView!
     @IBOutlet weak var headerBackgroundView: UIView! {
         didSet {
             headerBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
@@ -62,28 +59,13 @@ class HeaderView: UIView {
         containerView.frame = bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        addGestureRecognizerToActions()
     }
     
-    func addGestureRecognizerToActions(){
-        let shareTap = UITapGestureRecognizer(target: self, action: #selector(shareActionWasSelected))
-        shareActionImageView.addGestureRecognizer(shareTap)
-        
-        let addTap = UITapGestureRecognizer(target: self, action: #selector(addActionWasSelected))
-        addActionImageView.addGestureRecognizer(addTap)
-        
-    }
-    
-    
-    @objc func starActionWasSelected(){
-        delegate?.starActionSelected()
-    }
-    
-    @objc func shareActionWasSelected(){
+    @IBAction func headerShareActionWasTapped(_ sender: UIButton) {
         delegate?.shareActionSelected()
     }
     
-    @objc func addActionWasSelected(){
+    @IBAction func headerAddActionWasTapped(_ sender: UIButton) {
         delegate?.addActionSelected()
     }
 

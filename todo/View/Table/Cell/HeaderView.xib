@@ -39,6 +39,9 @@
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         </preferredSymbolConfiguration>
                                     </state>
+                                    <connections>
+                                        <action selector="headerShareActionWasTapped:" destination="-1" eventType="touchUpInside" id="evy-bA-uls"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afu-sG-S9g">
                                     <rect key="frame" x="51" y="1" width="26" height="25"/>
@@ -47,6 +50,9 @@
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         </preferredSymbolConfiguration>
                                     </state>
+                                    <connections>
+                                        <action selector="headerAddActionWasTapped:" destination="-1" eventType="touchUpInside" id="chu-mo-zmT"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
