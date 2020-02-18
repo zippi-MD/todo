@@ -18,46 +18,37 @@ class TodoTagsTableViewController: UITableViewController {
         
         setUpTable()
         
-        tableView.register(UINib(nibName: "TodoTagTableViewCell", bundle: nil), forCellReuseIdentifier: "TagCell")
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib(nibName: "TodoTagTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.TagCellIdentifier)
     }
     
     func setUpTable(){
         table.separatorColor = .clear
     }
 
-    // MARK: - Table view data source
+}
 
+// MARK: - Table view data source
+extension TodoTagsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return TodoManager.sharedInstance.numberOfSections
-    }
+           return 1
+       }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TodoManager.sharedInstance.todosTags.count
-    }
+       override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+           return TodoManager.sharedInstance.todosTags.count
+       }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath)
-        
-        guard let masterViewCell = cell as? TodoTagTableViewCell, let tag = TodoManager.sharedInstance.tagForIndexPath(indexPath) else { return cell }
-        
-        masterViewCell.headerTag = tag
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45 * 1.3
-    }
-
-
-
-
-
+       override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+           
+           let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TagCellIdentifier, for: indexPath)
+           
+           guard let masterViewCell = cell as? TodoTagTableViewCell, let tag = TodoManager.sharedInstance.tagForIndexPath(indexPath) else { return cell }
+           
+           masterViewCell.headerTag = tag
+           
+           return cell
+       }
+       
+       override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           return 45 * 1.3
+       }
 }

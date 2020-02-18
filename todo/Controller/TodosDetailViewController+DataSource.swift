@@ -30,6 +30,7 @@ extension TodosDetailViewController: UITableViewDataSource {
             todoCell.todoTag = todo.tagName
             todoCell.todoDescription = todo.todoDescription
             todoCell.todoScheduledDate = todo.dateScheduled
+            todoCell.compleated = todo.compleated
             
             return todoCell
             

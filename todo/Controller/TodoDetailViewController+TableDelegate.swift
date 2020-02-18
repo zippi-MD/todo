@@ -78,44 +78,61 @@ extension TodosDetailViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let context = fetchedResultsController.managedObjectContext
-            guard let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return }
-            context.delete(todo)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
+
     
     
     //MARK: -Swipe Actions
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let completeAction = UIContextualAction(style: .normal, title: "") { [unowned self](_, _, _) in
+        
+        guard let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return nil }
+        
+        let completeAction = UIContextualAction(style: .normal, title: "") { [unowned self](_, _, completionHandler) in
+            let context = self.fetchedResultsController.managedObjectContext
             
+            do {
+                let todoToUpdate = try? context.existingObject(with: todo.objectID) as? Todo
+                todoToUpdate?.compleated.toggle()
+                try context.save()
+            } catch
+            {
+                let nserror = error as NSError
+                assert(true, "\(nserror.localizedDescription)")
+            }
+
+            completionHandler(true)
         }
         
-        completeAction.backgroundColor = UIColor(named: TagBackgroundColors.TagGreen1.rawValue)
-        completeAction.image = UIImage(systemName: "checkmark")
+        if todo.compleated {
+            completeAction.backgroundColor = UIColor(named: TagBackgroundColors.TagRed1.rawValue)
+            completeAction.image = UIImage(systemName: "xmark.circle.fill")
+        }
+        else {
+            completeAction.backgroundColor = UIColor(named: TagBackgroundColors.TagGreen1.rawValue)
+            completeAction.image = UIImage(systemName: "checkmark.circle.fill")
+        }
+        
         
         return UISwipeActionsConfiguration(actions: [completeAction])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let trashAction = UIContextualAction(style: .normal, title: "") { [unowned self](_, _, _) in
+        let trashAction = UIContextualAction(style: .destructive, title: "") { [unowned self](_, _, completionHandler) in
+            let context = self.fetchedResultsController.managedObjectContext
+            guard let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return }
+            context.delete(todo)
+            do {
+                try context.save()
+            } catch
+            {
+                let nserror = error as NSError
+                assert(true, "\(nserror.localizedDescription)")
+            }
             
+            completionHandler(true)
         }
         
         trashAction.backgroundColor = UIColor(named: TagBackgroundColors.TagRed2.rawValue)
-        trashAction.image = UIImage(systemName: "trash")
+        trashAction.image = UIImage(systemName: "trash.circle.fill")
         
         return UISwipeActionsConfiguration(actions: [trashAction])
     }
