@@ -110,6 +110,9 @@ class TodosDetailViewController: UIViewController {
     }
     
     @IBAction func segmentedSortedOptionsChangedValueTo(_ sender: UISegmentedControl) {
+        
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
+        
         let sortOptionIndex = sender.selectedSegmentIndex
         let sortOption = sortTodosOptions[sortOptionIndex]
         
