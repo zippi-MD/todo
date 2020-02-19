@@ -31,6 +31,7 @@
 		D49F0C2223CC28E0004B4910 /* Toolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49F0C2123CC28E0004B4910 /* Toolbar.xib */; };
 		D49F0C2423CD8A3C004B4910 /* KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */; };
 		D4A7D04E23C9323E001C8E37 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7D04D23C9323E001C8E37 /* AttributedString.swift */; };
+		D4B557A223FD9C0100453865 /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B557A123FD9C0100453865 /* HapticFeedbackManager.swift */; };
 		D4B9E0C123E903AE004B2735 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9E0C023E903AE004B2735 /* Colors.swift */; };
 		D4B9E0C323E91C5D004B2735 /* TodoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */; };
 		D4BB4D6223F9AE98004E31D2 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */; };
@@ -73,6 +74,7 @@
 		D49F0C2123CC28E0004B4910 /* Toolbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Toolbar.xib; sourceTree = "<group>"; };
 		D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEvents.swift; sourceTree = "<group>"; };
 		D4A7D04D23C9323E001C8E37 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
+		D4B557A123FD9C0100453865 /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
 		D4B9E0C023E903AE004B2735 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoConfiguration.swift; sourceTree = "<group>"; };
 		D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				D43C395123C44CC100560812 /* TodoManager.swift */,
 				D43C395A23C4557200560812 /* Constants.swift */,
 				D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */,
+				D4B557A123FD9C0100453865 /* HapticFeedbackManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				D4B9E0C123E903AE004B2735 /* Colors.swift in Sources */,
 				D48DD9A523D7A132001AD2AC /* todo.xcdatamodeld in Sources */,
 				D4ED92DB23CEDF2E00894E90 /* TodosDetailViewController+DataSource.swift in Sources */,
+				D4B557A223FD9C0100453865 /* HapticFeedbackManager.swift in Sources */,
 				D43C395423C44F8B00560812 /* TodoTagsTableViewController.swift in Sources */,
 				D482DF90239E0DC700C18B82 /* AppDelegate.swift in Sources */,
 				D43C395223C44CC200560812 /* TodoManager.swift in Sources */,
