@@ -63,6 +63,7 @@ class HeaderView: UIView {
     }
     
     @IBAction func headerShareActionWasTapped(_ sender: UIButton) {
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
         let todosToShare = TodoManager.sharedInstance.getStringToShareForTodosWithTag(headerTag)
         if let todosToShare = todosToShare {
             let items = [todosToShare]
@@ -77,6 +78,7 @@ class HeaderView: UIView {
     }
     
     @IBAction func headerAddActionWasTapped(_ sender: UIButton) {
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
         delegate?.addActionSelected(headerTag)
     }
 

@@ -89,6 +89,7 @@ class TodosDetailViewController: UIViewController {
     }
     
     @IBAction func addTodoButtonTapped(_ sender: UIButton?) {
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
         actualTodoDetailState = .present
         let animationDuration: TimeInterval = 0.25
         
@@ -106,10 +107,14 @@ class TodosDetailViewController: UIViewController {
             self.view.layoutIfNeeded()
         }) { (_) in
             self.addTodoView.setAsFirstResponder()
+            HapticFeedbackManager.sharedInstance.excecuteImpactFeedback(intensity: .medium)
         }
     }
     
     @IBAction func segmentedSortedOptionsChangedValueTo(_ sender: UISegmentedControl) {
+        
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
+        
         let sortOptionIndex = sender.selectedSegmentIndex
         let sortOption = sortTodosOptions[sortOptionIndex]
         
@@ -222,15 +227,18 @@ extension TodosDetailViewController: ToolbarDelegate {
                                                   dateCreation: Date(),
                                                   dateScheduled: addTodoView.todoScheduleDate)
         insertNewTodo(todoConfiguration)
+        HapticFeedbackManager.sharedInstance.excecuteImpactFeedback(intensity: .soft)
     }
     
     func scheduleActionWasSelected() {
         actualTodoDetailState = .schedule
-        
         addTodoView.resignAsFirstResponder()
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
     }
     
     func discardActionWasSelected() {
+        
+        HapticFeedbackManager.sharedInstance.excecuteNotificationFeedBack(notification: .warning)
         
         actualTodoDetailState = .discard
         let animationDuration: TimeInterval = 0.25
@@ -408,10 +416,12 @@ extension TodosDetailViewController: TodoDatePickerDelegate {
         addTodoView.todoScheduleDate = date
         actualTodoDetailState = .present
         addTodoView.setAsFirstResponder()
+        HapticFeedbackManager.sharedInstance.excecuteSelectionFeedback()
     }
     
     func cancelActionWasSelected() {
         addTodoView.todoScheduleDate = nil
+        HapticFeedbackManager.sharedInstance.excecuteNotificationFeedBack(notification: .warning)
         actualTodoDetailState = .present
         addTodoView.setAsFirstResponder()
     }
