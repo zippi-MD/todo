@@ -12,6 +12,7 @@ class TodoTagsTableViewController: UITableViewController {
 
     @IBOutlet var table: UITableView!
     
+    var selectedRowIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,11 @@ class TodoTagsTableViewController: UITableViewController {
         setUpTable()
         
         tableView.register(UINib(nibName: "TodoTagTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.TagCellIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }
     
     func setUpTable(){
@@ -34,16 +40,26 @@ extension TodoTagsTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return TodoManager.sharedInstance.todosTags.count
+       return TodoManager.sharedInstance.todosTags.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TagCellIdentifier, for: indexPath)
+        
+        let tagIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        let tag: String?
+        
+        if tagIndexPath.row < 0 {
+            tag = "#All"
+        }
+        else {
+            tag = TodoManager.sharedInstance.tagForIndexPath(tagIndexPath)
+        }
        
-       guard let masterViewCell = cell as? TodoTagTableViewCell, let tag = TodoManager.sharedInstance.tagForIndexPath(indexPath) else { return cell }
+       guard let masterViewCell = cell as? TodoTagTableViewCell, let headerTag = tag else { return cell }
        
-       masterViewCell.headerTag = tag
+       masterViewCell.headerTag = headerTag
        
        return cell
     }
@@ -53,6 +69,6 @@ extension TodoTagsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }
