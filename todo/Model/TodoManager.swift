@@ -22,7 +22,8 @@ class TodoManager {
     
     static let sharedInstance = TodoManager()
     
-    weak var delegate: TodoManagerDelegate?
+    weak var detailDelegate: TodoManagerDelegate?
+    weak var masterDelegate: TodoManagerDelegate?
     var sortTodosBy: SortOptions = .ByTag
     
     var todosTags = Set<String>()
@@ -130,7 +131,8 @@ class TodoManager {
             }
         }
         
-        delegate?.didFinishSortingTodos()
+        detailDelegate?.didFinishSortingTodos()
+        masterDelegate?.didFinishSortingTodos()
         
     }
     

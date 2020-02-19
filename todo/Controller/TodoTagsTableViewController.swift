@@ -16,10 +16,10 @@ class TodoTagsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpTable()
-        
         tableView.register(UINib(nibName: "TodoTagTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.TagCellIdentifier)
+        
+        TodoManager.sharedInstance.masterDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,4 +71,12 @@ extension TodoTagsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+}
+
+extension TodoTagsTableViewController: TodoManagerDelegate {
+    func didFinishSortingTodos() {
+        tableView.reloadData()
+    }
+    
+    
 }

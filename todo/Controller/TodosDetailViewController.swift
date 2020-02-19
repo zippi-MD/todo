@@ -60,7 +60,7 @@ class TodosDetailViewController: UIViewController {
         detailTableView.dataSource = self
         detailTableView.allowsMultipleSelectionDuringEditing = false
         
-        TodoManager.sharedInstance.delegate = self
+        TodoManager.sharedInstance.detailDelegate = self
         
         if let todos = fetchedResultsController.fetchedObjects {
             TodoManager.sharedInstance.todos = todos
