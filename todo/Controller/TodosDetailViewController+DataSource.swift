@@ -27,6 +27,7 @@ extension TodosDetailViewController: UITableViewDataSource {
             guard let todoCell = cell as? TodoTableViewCell, let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return cell }
             
             todoCell.todo = todo
+            
             todoCell.todoTag = todo.tagName
             todoCell.todoDescription = todo.todoDescription
             todoCell.todoScheduledDate = todo.dateScheduled
@@ -37,6 +38,10 @@ extension TodosDetailViewController: UITableViewDataSource {
         case .ByDateCreated, .ByDateScheduled:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailTodoCellWithTagIdentifier, for: indexPath)
             guard let todoCell = cell as? TodoWithTagAndDateTableViewCell, let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return cell }
+            
+            if let tag = todo.tagName, let colorName = TodoManager.sharedInstance.getColorForTag(tag) {
+                todoCell.todoTagColor = getColorFrom(colorName)
+            }
             
             todoCell.todo = todo
             todoCell.todoTag = todo.tagName

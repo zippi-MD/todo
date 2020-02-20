@@ -39,11 +39,13 @@ class TodoWithTagAndDateTableViewCell: UITableViewCell {
         }
     }
     
+    var todoTagColor: UIColor = UIColor.systemPink
+    
     var todoTag: String? {
         set {
-            if let tag = newValue, let location = getLocationOfTagFrom(tag, beginningWith: Constants.TagIdentifier), let tagBackgroundIdentifier = TagBackgroundColors.allCases.randomElement(), let color = UIColor(named: tagBackgroundIdentifier.rawValue) {
+            if let tag = newValue, let location = getLocationOfTagFrom(tag, beginningWith: Constants.TagIdentifier) {
                 
-                let highlightedTag = getHighlightedTextFor(tag, withLocation: location, color: color, wide: true)
+                let highlightedTag = getHighlightedTextFor(tag, withLocation: location, color: todoTagColor, wide: true)
                 
                 todoTagLabel.attributedText = highlightedTag
             }
