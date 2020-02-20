@@ -31,7 +31,9 @@ extension TodosDetailViewController: UITableViewDataSource {
             todoCell.todoTag = todo.tagName
             todoCell.todoDescription = todo.todoDescription
             todoCell.todoScheduledDate = todo.dateScheduled
-            todoCell.compleated = todo.compleated
+            
+            let completeImageName = todo.compleated ? "checkmark.circle" : "circle"
+            todoCell.completedImage.image = UIImage(systemName: completeImageName)
             
             return todoCell
             
@@ -47,6 +49,9 @@ extension TodosDetailViewController: UITableViewDataSource {
             todoCell.todoTag = todo.tagName
             todoCell.todoDescription = todo.todoDescription
             todoCell.todoScheduledDate = todo.dateScheduled
+            
+            let completeImageName = todo.compleated ? "checkmark.circle" : "circle"
+            todoCell.completedImage.image = UIImage(systemName: completeImageName)
             
             return todoCell
             

@@ -76,46 +76,24 @@ extension TodosDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        guard let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return }
+        
+        let context = self.fetchedResultsController.managedObjectContext
+        
+        do {
+            let todoToUpdate = try? context.existingObject(with: todo.objectID) as? Todo
+            todoToUpdate?.compleated.toggle()
+            try context.save()
+        } catch
+        {
+            let nserror = error as NSError
+            assert(true, "\(nserror.localizedDescription)")
+        }
+        
+        HapticFeedbackManager.sharedInstance.excecuteImpactFeedback(intensity: .light)
     }
-    
-
-    
     
     //MARK: -Swipe Actions
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        guard let todo = TodoManager.sharedInstance.todoForIndexPath(indexPath) else { return nil }
-        
-        let completeAction = UIContextualAction(style: .normal, title: "") { [unowned self](_, _, completionHandler) in
-            let context = self.fetchedResultsController.managedObjectContext
-            
-            do {
-                let todoToUpdate = try? context.existingObject(with: todo.objectID) as? Todo
-                todoToUpdate?.compleated.toggle()
-                try context.save()
-            } catch
-            {
-                let nserror = error as NSError
-                assert(true, "\(nserror.localizedDescription)")
-            }
-
-            completionHandler(true)
-        }
-        
-        if todo.compleated {
-            completeAction.backgroundColor = UIColor(named: TagBackgroundColors.TagRed1.rawValue)
-            completeAction.image = UIImage(systemName: "xmark.circle.fill")
-        }
-        else {
-            completeAction.backgroundColor = UIColor(named: TagBackgroundColors.TagGreen1.rawValue)
-            completeAction.image = UIImage(systemName: "checkmark.circle.fill")
-        }
-        
-        
-        return UISwipeActionsConfiguration(actions: [completeAction])
-    }
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let trashAction = UIContextualAction(style: .destructive, title: "") { [unowned self](_, _, completionHandler) in
             let context = self.fetchedResultsController.managedObjectContext

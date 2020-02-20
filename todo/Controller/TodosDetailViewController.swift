@@ -368,7 +368,6 @@ extension TodosDetailViewController {
         if traitCollection == previousTraitCollection {
             return
         }
-        
         updateUIForStyle(style: traitCollection.horizontalSizeClass)
         
     }

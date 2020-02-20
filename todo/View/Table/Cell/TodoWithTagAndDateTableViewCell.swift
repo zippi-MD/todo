@@ -15,16 +15,18 @@ class TodoWithTagAndDateTableViewCell: UITableViewCell {
             todoBackgroundView.layer.cornerRadius = Constants.TodoCornerRadius
         }
     }
-    @IBOutlet private weak var todoTagLabel: UILabel!
+    @IBOutlet weak var todoTagLabel: UILabel!
     @IBOutlet private weak var todoDateLabel: UILabel!
 
 
     @IBOutlet private weak var todoLabel: UILabel!
+    @IBOutlet weak var completedImage: UIImageView!
     
     var todo: Todo?
     var todoDescription: String? {
         set {
-            if let tag = todoTag {
+            if let todoTag = todoTag {
+                let tag = todoTag.trimmingCharacters(in: .whitespacesAndNewlines)
                 var todoDescription = newValue?.replacingOccurrences(of: tag, with: " ")
                 todoDescription = todoDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
                 todoLabel.text = todoDescription

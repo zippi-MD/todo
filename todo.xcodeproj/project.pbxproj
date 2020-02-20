@@ -56,7 +56,7 @@
 		D43C395A23C4557200560812 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D462786123D209A800BCBB4D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D462786323D23D5700BCBB4D /* ColorsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsEnums.swift; sourceTree = "<group>"; };
-		D482DF8C239E0DC700C18B82 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D482DF8C239E0DC700C18B82 /* #Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "#Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D482DF8F239E0DC700C18B82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D482DF91239E0DC700C18B82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D482DF96239E0DC700C18B82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		D482DF8D239E0DC700C18B82 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D482DF8C239E0DC700C18B82 /* todo.app */,
+				D482DF8C239E0DC700C18B82 /* #Todo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 			);
 			name = todo;
 			productName = todo;
-			productReference = D482DF8C239E0DC700C18B82 /* todo.app */;
+			productReference = D482DF8C239E0DC700C18B82 /* #Todo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -541,7 +541,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zippi.todo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "#Todo";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -563,7 +563,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zippi.todo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "#Todo";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
