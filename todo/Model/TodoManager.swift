@@ -291,7 +291,7 @@ class TodoManager {
         
         for todo in todos {
             shareString += "- "
-            shareString += todo.compleated ? "✅ " : ""
+            shareString += todo.compleated ? "✅" : ""
             
             shareString += todo.todoDescription?.replacingOccurrences(of: tag, with: " ") ?? " "
             

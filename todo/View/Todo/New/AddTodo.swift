@@ -73,6 +73,7 @@ class AddTodo: UIView {
     
     func setInitialTagValueWith(_ tag: String) {
         self.todoTextView.text = tag
+        UIApplication.shared.sendAction(#selector(textViewDidChange(_:)), to: self, from: todoTextView, for: nil)
     }
     
     private func customInit(){

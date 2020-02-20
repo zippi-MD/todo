@@ -48,7 +48,6 @@ func getHighlightedTextFor(_ string: String, withLocation location: NSRange, col
         let rangeToHighlight = NSRange(location: 0, length: textToHighlight.length)
     
         attributed.deleteCharacters(in: location)
-        
         textToHighlight.addAttributes([.backgroundColor: color], range: rangeToHighlight)
         textToHighlight.addAttributes([.foregroundColor: UIColor.white], range: rangeToHighlight)
         

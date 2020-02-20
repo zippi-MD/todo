@@ -17,6 +17,7 @@ class TodoTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var todoLabel: UILabel!
     @IBOutlet private weak var todoDateLabel: UILabel!
+    @IBOutlet weak var completedImage: UIImageView!
     
     var todo: Todo?
     var todoTag: String?
@@ -48,20 +49,6 @@ class TodoTableViewCell: UITableViewCell {
         }
     }
     
-    var compleated: Bool = false {
-        willSet {
-            if let todoDescription = todoLabel.attributedText {
-                if newValue {
-                    todoLabel.attributedText = strikeString(todoDescription)
-                }
-                else {
-                    todoLabel.attributedText = removeStrikeFrom(todoDescription)
-                }
-                
-            }
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -69,5 +56,7 @@ class TodoTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    
     
 }
