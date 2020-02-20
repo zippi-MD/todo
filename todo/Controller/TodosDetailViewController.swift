@@ -173,13 +173,14 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
         toolbarView.alpha = 0
         
         let keyboardSize = notification.keyboardSize
+        let offsetFromDeviceScreenToApplicationFrame = (UIScreen.main.bounds.height - UIApplication.shared.windows[0].frame.height)/2
         
         if let keyboardHeight = keyboardSize?.height, let animationDuration = notification.keyboardAnimationDuration {
             UIView.animate(withDuration: animationDuration, animations: {
                 self.addTodoBottomConstraint.constant = keyboardHeight + 75.0
                 self.toolbarView.alpha = 1
                 let bottomSafeInset = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0
-                self.toolbarBottomConstraint.constant = keyboardHeight - bottomSafeInset
+                self.toolbarBottomConstraint.constant = keyboardHeight - bottomSafeInset - offsetFromDeviceScreenToApplicationFrame
                 self.todoDatePickerBottomConstraint.constant = 0
                 self.todoDatePickerView.alpha = 0
                 self.view.layoutIfNeeded()
@@ -192,11 +193,11 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
 
     func keyboardWillHide(_ notification: Notification) {
         if actualTodoDetailState == .discard {
-            UIView.animate(withDuration: 0.25) {
-                self.toolbarView.alpha = 0
-                self.toolbarBottomConstraint.constant = 0
-                self.view.layoutIfNeeded()
-            }
+//            UIView.animate(withDuration: 0.25) {
+//                self.toolbarView.alpha = 0
+//                self.toolbarBottomConstraint.constant = 0
+//                self.view.layoutIfNeeded()
+//            }
         }
         
         else if actualTodoDetailState == .schedule {
@@ -248,6 +249,13 @@ extension TodosDetailViewController: ToolbarDelegate {
         }) { (_) in
             self.addTodoView.resignAsFirstResponder()
             self.addTodoView.isHidden = true
+            
+            UIView.animate(withDuration: 0.25) {
+                self.toolbarView.alpha = 0
+                self.toolbarBottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }
+            
         }
         
         addTodoView.resetValues()
