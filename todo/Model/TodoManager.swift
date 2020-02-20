@@ -14,8 +14,14 @@ enum SortOptions: String {
     case ByDateScheduled = "Scheduled"
 }
 
+enum FocusOptions {
+    case All
+    case Tag(String)
+}
+
 protocol TodoManagerDelegate: class {
     func didFinishSortingTodos()
+    func didChangeFocusTo(option: FocusOptions)
 }
 
 class TodoManager {
@@ -25,6 +31,12 @@ class TodoManager {
     weak var detailDelegate: TodoManagerDelegate?
     weak var masterDelegate: TodoManagerDelegate?
     var sortTodosBy: SortOptions = .ByTag
+    
+    var focusOption: FocusOptions = .All {
+        didSet {
+            detailDelegate?.didChangeFocusTo(option: focusOption)
+        }
+    }
     
     var todosTags = Set<String>()
     
@@ -41,7 +53,17 @@ class TodoManager {
     var numberOfSections: Int {
         switch sortTodosBy {
         case .ByTag:
-            return todosTags.count
+            
+            switch focusOption {
+                
+            case .All:
+                return todosTags.count
+                
+            case .Tag(_):
+                return 1
+                
+            }
+            
         case .ByDateCreated, .ByDateScheduled:
             return 1
 
@@ -52,7 +74,8 @@ class TodoManager {
     
     private var todosSortedByDateScheduled = [Todo]()
     private var todosSortedByDateCreated = [Todo]()
-    private var todosSortedByTag = [String: [Todo]]()
+    private var todosSortedByTagAndDateScheduled = [String: [Todo]]()
+    private var todosSortedByTagAndDateCreated = [String: [Todo]]()
     
     private func getTodosTags() {
         todosTags.removeAll(keepingCapacity: true)
@@ -111,22 +134,42 @@ class TodoManager {
         
         todosSortedByDateScheduled = todosWithScheduleDate + todosWithoutScheduleDate
         
-        todosSortedByTag.removeAll(keepingCapacity: true)
+        todosSortedByTagAndDateScheduled.removeAll(keepingCapacity: true)
         for todo in todosSortedByDateScheduled {
             if let tag = todo.tagName {
-                if let _ = todosSortedByTag[tag] {
-                    todosSortedByTag[tag]?.append(todo)
+                if let _ = todosSortedByTagAndDateScheduled[tag] {
+                    todosSortedByTagAndDateScheduled[tag]?.append(todo)
                 }
                 else {
-                    todosSortedByTag[tag] = [todo]
+                    todosSortedByTagAndDateScheduled[tag] = [todo]
                 }
             }
             else {
-                if let _ = todosSortedByTag["#Something"] {
-                    todosSortedByTag["#Something"]?.append(todo)
+                if let _ = todosSortedByTagAndDateScheduled["#Something"] {
+                    todosSortedByTagAndDateScheduled["#Something"]?.append(todo)
                 }
                 else {
-                    todosSortedByTag["#Something"] = [todo]
+                    todosSortedByTagAndDateScheduled["#Something"] = [todo]
+                }
+            }
+        }
+        
+        todosSortedByTagAndDateCreated.removeAll(keepingCapacity: true)
+        for todo in todosSortedByDateCreated {
+            if let tag = todo.tagName {
+                if let _ = todosSortedByTagAndDateCreated[tag]{
+                    todosSortedByTagAndDateCreated[tag]?.append(todo)
+                }
+                else {
+                    todosSortedByTagAndDateCreated[tag] = [todo]
+                }
+            }
+            else {
+                if let _ = todosSortedByTagAndDateCreated["#Something"] {
+                    todosSortedByTagAndDateCreated["#Something"]?.append(todo)
+                }
+                else {
+                    todosSortedByTagAndDateCreated["#Something"]?.append(todo)
                 }
             }
         }
@@ -143,12 +186,35 @@ class TodoManager {
         switch sortTodosBy {
             
         case .ByTag:
-            let tagForSection = todoTagsSorted[section]
-            return todosSortedByTag[tagForSection]?.count ?? 0
-        case .ByDateCreated:
-            return todos.count
+            
+            switch focusOption {
+            case .All:
+                let tagForSection = todoTagsSorted[section]
+                return todosSortedByTagAndDateScheduled[tagForSection]?.count ?? 0
+                
+            case .Tag(let tag):
+                return todosSortedByTagAndDateScheduled[tag]?.count ?? 0
+            }
+
         case .ByDateScheduled:
-            return todos.count
+            
+            switch focusOption {
+            case .All:
+                return todos.count
+                
+            case .Tag(let tag):
+                return todosSortedByTagAndDateScheduled[tag]?.count ?? 0
+            }
+            
+        case .ByDateCreated:
+            switch focusOption {
+            case .All:
+                return todos.count
+                
+            case .Tag(let tag):
+                return todosSortedByTagAndDateCreated[tag]?.count ?? 0
+            }
+            
         
         }
         
@@ -158,13 +224,46 @@ class TodoManager {
         switch sortTodosBy {
             
         case .ByTag:
-            let tag = todoTagsSorted[indexPath.section]
-            return todosSortedByTag[tag]?[indexPath.row]
+            
+            switch focusOption {
+            case .All:
+                let tag = todoTagsSorted[indexPath.section]
+                return todosSortedByTagAndDateScheduled[tag]?[indexPath.row]
+                
+            case .Tag(let tag):
+                return todosSortedByTagAndDateScheduled[tag]?[indexPath.row]
+            }
+            
+            
         case .ByDateCreated:
-            return todosSortedByDateCreated[indexPath.row]
+            
+            switch focusOption {
+            case .All:
+               return todosSortedByDateCreated[indexPath.row]
+                
+            case .Tag(let tag):
+                return todosSortedByTagAndDateCreated[tag]?[indexPath.row]
+            }
+            
         case .ByDateScheduled:
-            return todosSortedByDateScheduled[indexPath.row]
+            
+            switch focusOption {
+            case .All:
+                return todosSortedByDateScheduled[indexPath.row]
+                
+            case .Tag(let tag):
+                return todosSortedByTagAndDateScheduled[tag]?[indexPath.row]
+            }
 
+        }
+    }
+    
+    func headerForSection(_ section: Int) -> String {
+        switch focusOption {
+        case .All:
+            return todoTagsSorted[section]
+        case .Tag(let tag):
+            return tag
         }
     }
     
@@ -172,18 +271,7 @@ class TodoManager {
         
         if todos.count == 0 { return nil }
         
-        switch sortTodosBy {
-            
-        case .ByTag:
-            return todoTagsSorted[indexPath.row]
-        case .ByDateCreated:
-            return nil
-        case .ByDateScheduled:
-            return nil
-
-        }
-        
-        
+        return todoTagsSorted[indexPath.row]
         
     }
     
@@ -197,7 +285,7 @@ class TodoManager {
     }
     
     func getStringToShareForTodosWithTag(_ tag: String) -> String? {
-        guard let todos = todosSortedByTag[tag] else { return nil }
+        guard let todos = todosSortedByTagAndDateScheduled[tag] else { return nil }
 
         var shareString = "\(tag)\n"
         

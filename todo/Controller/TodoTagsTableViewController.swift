@@ -69,14 +69,24 @@ extension TodoTagsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section == 0, indexPath.row == 0 {
+            TodoManager.sharedInstance.focusOption = .All
+        }
+        else {
+            let selectedRowIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            if let tag = TodoManager.sharedInstance.tagForIndexPath(selectedRowIndexPath) {
+                TodoManager.sharedInstance.focusOption = .Tag(tag)
+            }
+        }
     }
 }
 
 extension TodoTagsTableViewController: TodoManagerDelegate {
+    func didChangeFocusTo(option: FocusOptions) {
+    }
+    
     func didFinishSortingTodos() {
         tableView.reloadData()
     }
-    
     
 }

@@ -405,6 +405,10 @@ extension TodosDetailViewController {
 
 //MARK: -Handle TodoManager Delegate
 extension TodosDetailViewController: TodoManagerDelegate {
+    func didChangeFocusTo(option: FocusOptions) {
+        detailTableView.reloadData()
+    }
+    
     func didFinishSortingTodos() {
         detailTableView.reloadData()
     }
