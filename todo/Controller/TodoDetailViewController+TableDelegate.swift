@@ -17,12 +17,13 @@ extension TodosDetailViewController: UITableViewDelegate {
 
         case .ByTag:
             let header = HeaderView()
-            let tag = TodoManager.sharedInstance.todoTagsSorted[section]
-            header.headerTag = TodoManager.sharedInstance.todoTagsSorted[section]
+            let tag = TodoManager.sharedInstance.headerForSection(section)
+            header.headerTag = tag
             
             if let colorName = TodoManager.sharedInstance.getColorForTag(tag) {
                 header.headerTagColor = getColorFrom(colorName)
             }
+            
             header.delegate = self
             return header
             

@@ -25,7 +25,9 @@ class TodoWithTagAndDateTableViewCell: UITableViewCell {
     var todoDescription: String? {
         set {
             if let tag = todoTag {
-                todoLabel.text = newValue?.replacingOccurrences(of: tag, with: " ")
+                var todoDescription = newValue?.replacingOccurrences(of: tag, with: " ")
+                todoDescription = todoDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
+                todoLabel.text = todoDescription
             }
             else {
                 todoLabel.text = newValue

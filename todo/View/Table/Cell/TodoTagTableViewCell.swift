@@ -10,6 +10,7 @@ import UIKit
 
 class TodoTagTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var contentBackgroundView: UIView!
     @IBOutlet weak var TagBackgroundView: UIView!
     @IBOutlet weak var TagLabel: UILabel!
     
@@ -41,7 +42,12 @@ class TodoTagTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
+        let colorName = selected ? "Cell-Background" : "TableBackground"
+        
+        if let selectedColor = UIColor(named: colorName) {
+            contentBackgroundView.backgroundColor = selectedColor
+        }
     }
     
 }
