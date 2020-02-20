@@ -32,7 +32,7 @@ extension TodosDetailViewController: UITableViewDataSource {
             todoCell.todoDescription = todo.todoDescription
             todoCell.todoScheduledDate = todo.dateScheduled
             
-            let completeImageName = todo.compleated ? "checkmark.circle" : "circle"
+            let completeImageName = todo.compleated ? "checkmark.circle.fill" : "circle"
             todoCell.completedImage.image = UIImage(systemName: completeImageName)
             
             return todoCell
