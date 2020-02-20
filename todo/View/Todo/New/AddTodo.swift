@@ -68,6 +68,7 @@ class AddTodo: UIView {
     
     func resetValues() {
         self.todoTextView.text = ""
+        self.todoTextView.attributedText = NSAttributedString(string: "")
         self.todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
     }
     
