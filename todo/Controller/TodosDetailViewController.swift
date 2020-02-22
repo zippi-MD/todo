@@ -324,41 +324,7 @@ extension TodosDetailViewController: NSFetchedResultsControllerDelegate {
         return _fetchedResultsController!
     }
     
-    
-
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        detailTableView.beginUpdates()
-    }
-//
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//        switch type {
-//            case .insert:
-//                detailTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-//            case .delete:
-//                detailTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-//            default:
-//                return
-//        }
-    }
-//
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-
-//        switch type {
-//            case .insert:
-//                detailTableView.insertRows(at: [newIndexPath!], with: .fade)
-//            case .delete:
-//                detailTableView.deleteRows(at: [indexPath!], with: .fade)
-//            case .update:
-//                return
-//            case .move:
-//                return
-//            default:
-//                return
-//        }
-    }
-//
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        detailTableView.endUpdates()
         if let todos = fetchedResultsController.fetchedObjects {
             TodoManager.sharedInstance.todos = todos
         }
