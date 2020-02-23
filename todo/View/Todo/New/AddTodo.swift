@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddTodoDelegate: class {
-    func addTodoDidBecameFirstResponder()
+    func addTodoShouldBecomeFirstResponder() -> Bool
 }
 
 @IBDesignable
@@ -140,8 +140,11 @@ extension AddTodo: UITextViewDelegate {
         
     }
     
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return delegate?.addTodoShouldBecomeFirstResponder() ?? false
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         alignTextVerticallyInContainer()
-        delegate?.addTodoDidBecameFirstResponder()
     }
 }

@@ -251,10 +251,12 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
 
 //MARK: -Handle AddTodo Events
 extension TodosDetailViewController: AddTodoDelegate {
-    func addTodoDidBecameFirstResponder() {
+    func addTodoShouldBecomeFirstResponder() -> Bool {
         if actualTodoDetailState == .schedule {
             actualTodoDetailState = .present
+            return false
         }
+        return true
     }
 }
 
