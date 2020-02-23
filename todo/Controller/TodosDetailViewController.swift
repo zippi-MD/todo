@@ -56,6 +56,7 @@ class TodosDetailViewController: UIViewController {
         super.viewDidLoad()
         keyboardHandler.registerForKeyboardEvents()
         
+        addTodoView.delegate = self
         keyboardHandler.delegate = self
         toolbarView.delegate = self
         todoDatePickerView.delegate = self
@@ -246,6 +247,15 @@ extension TodosDetailViewController: KeyboardHandlingDelegate {
     }
     
     
+}
+
+//MARK: -Handle AddTodo Events
+extension TodosDetailViewController: AddTodoDelegate {
+    func addTodoDidBecameFirstResponder() {
+        if actualTodoDetailState == .schedule {
+            actualTodoDetailState = .present
+        }
+    }
 }
 
 // MARK: - Handle Toolbar Events
