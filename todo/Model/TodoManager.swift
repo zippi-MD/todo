@@ -79,7 +79,7 @@ class TodoManager {
     private func getTodosTags() {
         todosTags.removeAll(keepingCapacity: true)
         for todo in todos {
-            let tag = todo.tagName ?? "#Something"
+            let tag = todo.tagName ?? Constants.somethingTag
             todosTags.insert(tag)
         
             if let _ = todosByTag[tag] {
@@ -144,11 +144,11 @@ class TodoManager {
                 }
             }
             else {
-                if let _ = todosSortedByTagAndDateScheduled["#Something"] {
-                    todosSortedByTagAndDateScheduled["#Something"]?.append(todo)
+                if let _ = todosSortedByTagAndDateScheduled[Constants.somethingTag] {
+                    todosSortedByTagAndDateScheduled[Constants.somethingTag]?.append(todo)
                 }
                 else {
-                    todosSortedByTagAndDateScheduled["#Something"] = [todo]
+                    todosSortedByTagAndDateScheduled[Constants.somethingTag] = [todo]
                 }
             }
         }
@@ -164,11 +164,11 @@ class TodoManager {
                 }
             }
             else {
-                if let _ = todosSortedByTagAndDateCreated["#Something"] {
-                    todosSortedByTagAndDateCreated["#Something"]?.append(todo)
+                if let _ = todosSortedByTagAndDateCreated[Constants.somethingTag] {
+                    todosSortedByTagAndDateCreated[Constants.somethingTag]?.append(todo)
                 }
                 else {
-                    todosSortedByTagAndDateCreated["#Something"]?.append(todo)
+                    todosSortedByTagAndDateCreated[Constants.somethingTag]?.append(todo)
                 }
             }
         }
