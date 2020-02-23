@@ -7,6 +7,11 @@
 //
 
 import UIKit
+
+protocol AddTodoDelegate: class {
+    func addTodoShouldBecomeFirstResponder() -> Bool
+}
+
 @IBDesignable
 class AddTodo: UIView {
 
@@ -17,7 +22,7 @@ class AddTodo: UIView {
     @IBOutlet private weak var todoDateLabel: UILabel!
     
     let todoManager = TodoManager.sharedInstance
-    
+    weak var delegate: AddTodoDelegate?
     var todoTagName: String?
     var todoDescription: String {
         get {
@@ -133,6 +138,10 @@ extension AddTodo: UITextViewDelegate {
         textView.textAlignment = .center
         alignTextVerticallyInContainer()
         
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return delegate?.addTodoShouldBecomeFirstResponder() ?? false
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

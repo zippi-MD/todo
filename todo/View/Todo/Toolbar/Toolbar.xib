@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Toolbar" customModule="todo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Toolbar" customModule="_Todo" customModuleProvider="target">
             <connections>
                 <outlet property="addBackgroundView" destination="Xh0-zl-4Vb" id="Eqm-yF-xxU"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="lWp-LC-79O"/>
