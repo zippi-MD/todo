@@ -139,12 +139,9 @@ extension TodosDetailViewController {
         switch state {
             
         case .present:
-            addTodoView.alpha = 0
-            toolbarView.alpha = 0
+
             addTodoView.isHidden = false
             toolbarView.isHidden = false
-            
-            addTodoBackgroundView.alpha = 0
             addTodoBackgroundView.isHidden = false
             
             UIView.animate(withDuration: animationDuration, animations: {
@@ -154,7 +151,7 @@ extension TodosDetailViewController {
                 
                 self.todoDatePickerBottomConstraint.constant = -self.todoDatePickerView.frame.height
                 self.toolbarBottomConstraint.constant = self.view.safeAreaInsets.bottom
-                self.addTodoBottomConstraint.constant = self.toolbarView.frame.height + 75
+                self.addTodoBottomConstraint.constant = self.toolbarView.frame.height + 100
                 self.view.layoutIfNeeded()
             }) { (_) in
                 self.addTodoView.setAsFirstResponder()
@@ -173,7 +170,7 @@ extension TodosDetailViewController {
                 self.addTodoView.resignAsFirstResponder()
                 self.addTodoView.isHidden = true
                 
-                UIView.animate(withDuration: 0.25) {
+                UIView.animate(withDuration: animationDuration) {
                     self.toolbarView.alpha = 0
                     self.toolbarBottomConstraint.constant = 0
                     self.view.layoutIfNeeded()
@@ -263,6 +260,11 @@ extension TodosDetailViewController: AddTodoDelegate {
 // MARK: - Handle Toolbar Events
 extension TodosDetailViewController: ToolbarDelegate {
     func addActionWasSelected() {
+        
+        if addTodoView.todoDescription.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            HapticFeedbackManager.sharedInstance.excecuteImpactFeedback(intensity: .rigid)
+            return
+        }
         
         let todoConfiguration = TodoConfiguration(tagName: addTodoView.todoTagName,
                                                   tagColor: addTodoView.tagColor.rawValue,
