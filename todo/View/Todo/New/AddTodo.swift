@@ -113,6 +113,17 @@ extension AddTodo: UITextViewDelegate {
         let text = textView.text ?? ""
         let cursorLocation = textView.selectedRange.location
         
+        let unAttributtedTextViewText = textView.text
+        let unAttributedTextRange = NSRange(location: 0, length: unAttributtedTextViewText?.count ?? 0)
+        let textColor = UIColor(named: "TodoText-1") ?? UIColor.black
+        let bodyFont = UIFont.preferredFont(forTextStyle: .body)
+        
+        let defaultAttributtedText = NSMutableAttributedString(string: unAttributtedTextViewText ?? "")
+        defaultAttributtedText.addAttribute(.font, value: bodyFont, range: unAttributedTextRange)
+        defaultAttributtedText.addAttribute(.foregroundColor, value: textColor, range: unAttributedTextRange)
+        
+        textView.attributedText = defaultAttributtedText
+        
         if  let location = getLocationOfTagFrom(text, beginningWith: "#"){
             
             var color = getColorFrom(todoTagBackgroundColor)
@@ -128,6 +139,7 @@ extension AddTodo: UITextViewDelegate {
                 temporalTodoTagBackgroundColor = nil
             }
             
+
             textView.attributedText = attributed
         }
         else {
