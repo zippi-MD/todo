@@ -18,6 +18,7 @@ class TodosDetailViewController: UIViewController {
     @IBOutlet weak var addTodoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var todoDatePickerBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var sortOptionSegmentedController: UISegmentedControl!
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var addTodoBackgroundView: UIView!
     @IBOutlet weak var segmentedControllerCompactBackground: UIView! {
@@ -86,6 +87,13 @@ class TodosDetailViewController: UIViewController {
     func setupUI(){
         let discardTap = UITapGestureRecognizer(target: self, action: #selector(discardActionWasSelected))
         addTodoBackgroundView.addGestureRecognizer(discardTap)
+        
+        for (index, option) in sortTodosOptions.enumerated() {
+            let sortOptionKey = option.rawValue
+            let optionName = NSLocalizedString(sortOptionKey, comment: "Segmented Controller Option")
+            sortOptionSegmentedController.setTitle(optionName, forSegmentAt: index)
+            
+        }
         
         detailTableView.register(UINib(nibName: "TodoWithTagAndDateTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellWithTagIdentifier)
         detailTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.DetailTodoCellIdentifier)

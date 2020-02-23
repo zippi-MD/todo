@@ -179,6 +179,7 @@
                         <outlet property="addTodoView" destination="uU5-cD-dnC" id="4l0-CP-0f0"/>
                         <outlet property="detailTableView" destination="PTx-ao-2GX" id="Ecq-QT-8Ix"/>
                         <outlet property="segmentedControllerCompactBackground" destination="DRD-sH-geH" id="XRJ-5X-NiM"/>
+                        <outlet property="sortOptionSegmentedController" destination="Diu-mW-43P" id="aT1-Em-N4f"/>
                         <outlet property="todoDatePickerBottomConstraint" destination="BvP-oh-Hng" id="7MC-gz-Qq1"/>
                         <outlet property="todoDatePickerView" destination="CDJ-hV-ADc" id="24N-lj-y7Q"/>
                         <outlet property="toolbarBottomConstraint" destination="Lsv-sl-G9h" id="IcW-sV-SPx"/>

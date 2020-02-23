@@ -9,9 +9,9 @@
 import Foundation
 
 enum SortOptions: String {
-    case ByTag = "By #'s"
-    case ByDateCreated = "Created"
-    case ByDateScheduled = "Scheduled"
+    case ByTag = "segment_tags_option"
+    case ByDateCreated = "segment_created_option"
+    case ByDateScheduled = "segment_scheduled_option"
 }
 
 enum FocusOptions {
@@ -27,7 +27,6 @@ protocol TodoManagerDelegate: class {
 class TodoManager {
     
     static let sharedInstance = TodoManager()
-    
     weak var detailDelegate: TodoManagerDelegate?
     weak var masterDelegate: TodoManagerDelegate?
     var sortTodosBy: SortOptions = .ByTag

@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  todo
+
+  Created by Alejandro Mendoza on 22/02/20.
+  Copyright © 2020 Alejandro Mendoza. All rights reserved.
+*/
+
+segment_tags_option = "My #'s";
+segment_created_option = "Created";
+segment_scheduled_option = "Scheduled";
