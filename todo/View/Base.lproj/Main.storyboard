@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qdb-m1-S5S">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -90,13 +90,16 @@
                         <constraints>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="1Hc-bW-jPc"/>
                             <constraint firstItem="Diu-mW-43P" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="2y0-85-Pbi"/>
+                            <constraint firstItem="uU5-cD-dnC" firstAttribute="width" secondItem="E1F-KJ-UXI" secondAttribute="width" multiplier="0.6" id="8tl-Oh-NYH"/>
                             <constraint firstItem="CDJ-hV-ADc" firstAttribute="trailing" secondItem="8ZC-tY-1uZ" secondAttribute="trailing" id="AVp-wP-qXd"/>
                             <constraint firstAttribute="bottom" secondItem="CDJ-hV-ADc" secondAttribute="bottom" constant="-250" id="BvP-oh-Hng"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="top" secondItem="8ZC-tY-1uZ" secondAttribute="top" id="FqM-JQ-e6x"/>
                             <constraint firstItem="uU5-cD-dnC" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="Fyj-8N-fJP"/>
+                            <constraint firstItem="Pxo-Lf-XcJ" firstAttribute="width" secondItem="E1F-KJ-UXI" secondAttribute="width" multiplier="0.85" id="HZ1-R5-U6S"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Diu-mW-43P" secondAttribute="bottom" constant="8" id="HbN-P8-gBV"/>
                             <constraint firstItem="UGN-bq-kWV" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="IaR-B4-Aj9"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="Pxo-Lf-XcJ" secondAttribute="bottom" constant="20" id="Lsv-sl-G9h"/>
+                            <constraint firstItem="Pxo-Lf-XcJ" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="Om7-gY-K0r"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="centerX" secondItem="E1F-KJ-UXI" secondAttribute="centerX" id="Rqw-Qd-DT2"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="width" secondItem="E1F-KJ-UXI" secondAttribute="width" multiplier="0.8" id="TT9-aZ-BRw"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="bottom" secondItem="DRD-sH-geH" secondAttribute="bottom" id="W31-LT-Ugg"/>
@@ -111,7 +114,7 @@
                             <constraint firstItem="CDJ-hV-ADc" firstAttribute="leading" secondItem="8ZC-tY-1uZ" secondAttribute="leading" id="kbk-qw-kuu"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="DRD-sH-geH" secondAttribute="trailing" constant="15" id="l6r-Cv-aZ9"/>
                             <constraint firstItem="8ZC-tY-1uZ" firstAttribute="trailing" secondItem="Pxo-Lf-XcJ" secondAttribute="trailing" id="lV2-tG-0V0"/>
-                            <constraint firstItem="UGN-bq-kWV" firstAttribute="bottom" secondItem="8ZC-tY-1uZ" secondAttribute="bottom" id="mQN-eM-sET"/>
+                            <constraint firstItem="UGN-bq-kWV" firstAttribute="bottom" secondItem="E1F-KJ-UXI" secondAttribute="bottom" id="mQN-eM-sET"/>
                             <constraint firstItem="Diu-mW-43P" firstAttribute="top" secondItem="DRD-sH-geH" secondAttribute="top" constant="8" id="pYd-cm-DoI"/>
                             <constraint firstItem="rAf-aC-cL8" firstAttribute="leading" secondItem="Diu-mW-43P" secondAttribute="trailing" constant="15" id="qNi-hw-xfs"/>
                             <constraint firstItem="PTx-ao-2GX" firstAttribute="top" secondItem="Diu-mW-43P" secondAttribute="bottom" constant="20" id="qOd-Ox-eD6"/>
@@ -124,6 +127,7 @@
                         <viewLayoutGuide key="safeArea" id="8ZC-tY-1uZ"/>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="lV2-tG-0V0"/>
                                 <exclude reference="Rqw-Qd-DT2"/>
                                 <exclude reference="TT9-aZ-BRw"/>
                                 <exclude reference="qOd-Ox-eD6"/>
@@ -132,16 +136,24 @@
                                 <exclude reference="dla-yO-mVz"/>
                                 <exclude reference="pYd-cm-DoI"/>
                                 <exclude reference="tr9-Fb-AAK"/>
+                                <exclude reference="8tl-Oh-NYH"/>
+                                <exclude reference="sEa-4f-dnK"/>
+                                <exclude reference="HZ1-R5-U6S"/>
+                                <exclude reference="Om7-gY-K0r"/>
+                                <exclude reference="jni-gq-yBY"/>
                                 <exclude reference="qNi-hw-xfs"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <include reference="lV2-tG-0V0"/>
                                 <exclude reference="2y0-85-Pbi"/>
                                 <include reference="HbN-P8-gBV"/>
                                 <include reference="dla-yO-mVz"/>
                                 <include reference="pYd-cm-DoI"/>
                                 <include reference="tr9-Fb-AAK"/>
+                                <include reference="sEa-4f-dnK"/>
+                                <include reference="jni-gq-yBY"/>
                                 <include reference="qNi-hw-xfs"/>
                             </mask>
                         </variation>
@@ -154,6 +166,9 @@
                                 <include reference="TT9-aZ-BRw"/>
                                 <include reference="qOd-Ox-eD6"/>
                                 <include reference="an6-1w-lpX"/>
+                                <include reference="8tl-Oh-NYH"/>
+                                <include reference="HZ1-R5-U6S"/>
+                                <include reference="Om7-gY-K0r"/>
                             </mask>
                         </variation>
                     </view>
@@ -179,7 +194,7 @@
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="kJQ-TN-r1e" customClass="TodoTagsTableViewController" customModule="_Todo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WxX-Uf-Q1t">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="TableBackground"/>
                         <connections>
@@ -203,7 +218,7 @@
             <objects>
                 <navigationController id="WJf-Mt-5MC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9w2-Nr-uO3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

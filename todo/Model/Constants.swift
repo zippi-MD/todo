@@ -18,4 +18,5 @@ struct Constants {
     static let TagIdentifier: String = "#"
     static let completedTodoSystemImageName = "checkmark.circle.fill"
     static let notCompletedTodoSystemImageName = "circle"
+    static let defaultAnimationDuration = 0.25
 }
