@@ -51,12 +51,17 @@ func getHighlightedTextFor(_ string: String, withLocation location: NSRange, col
         textToHighlight.addAttributes([.backgroundColor: color], range: rangeToHighlight)
         textToHighlight.addAttributes([.foregroundColor: UIColor.white], range: rangeToHighlight)
         
+        attributed.addAttributes([.foregroundColor: UIColor.red], range: NSRange(location: 0, length: attributed.length))
         attributed.insert(textToHighlight, at: location.lowerBound)
         
         return attributed
     }
     
+    let descriptionColor = UIColor(named: "TodoText-1") ?? UIColor.black
+    let wholeAttributedRange = NSRange(location: 0, length: attributed.length)
     attributed.addAttributes([.backgroundColor: color], range: location)
+    attributed.addAttributes([.foregroundColor: descriptionColor], range: wholeAttributedRange)
+    attributed.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .body), range: wholeAttributedRange)
     attributed.addAttributes([.foregroundColor: UIColor.white], range: location)
     
     return attributed

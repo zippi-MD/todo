@@ -7,6 +7,11 @@
 //
 
 import UIKit
+
+protocol AddTodoDelegate: class {
+    func addTodoShouldBecomeFirstResponder() -> Bool
+}
+
 @IBDesignable
 class AddTodo: UIView {
 
@@ -17,7 +22,7 @@ class AddTodo: UIView {
     @IBOutlet private weak var todoDateLabel: UILabel!
     
     let todoManager = TodoManager.sharedInstance
-    
+    weak var delegate: AddTodoDelegate?
     var todoTagName: String?
     var todoDescription: String {
         get {
@@ -68,6 +73,7 @@ class AddTodo: UIView {
     
     func resetValues() {
         self.todoTextView.text = ""
+        self.todoTextView.attributedText = NSAttributedString(string: "")
         self.todoTagBackgroundColor = TagBackgroundColors.allCases.randomElement() ?? TagBackgroundColors.TagPink1
     }
     
@@ -107,6 +113,17 @@ extension AddTodo: UITextViewDelegate {
         let text = textView.text ?? ""
         let cursorLocation = textView.selectedRange.location
         
+        let unAttributtedTextViewText = textView.text
+        let unAttributedTextRange = NSRange(location: 0, length: unAttributtedTextViewText?.count ?? 0)
+        let textColor = UIColor(named: "TodoText-1") ?? UIColor.black
+        let bodyFont = UIFont.preferredFont(forTextStyle: .body)
+        
+        let defaultAttributtedText = NSMutableAttributedString(string: unAttributtedTextViewText ?? "")
+        defaultAttributtedText.addAttribute(.font, value: bodyFont, range: unAttributedTextRange)
+        defaultAttributtedText.addAttribute(.foregroundColor, value: textColor, range: unAttributedTextRange)
+        
+        textView.attributedText = defaultAttributtedText
+        
         if  let location = getLocationOfTagFrom(text, beginningWith: "#"){
             
             var color = getColorFrom(todoTagBackgroundColor)
@@ -122,6 +139,7 @@ extension AddTodo: UITextViewDelegate {
                 temporalTodoTagBackgroundColor = nil
             }
             
+
             textView.attributedText = attributed
         }
         else {
@@ -132,6 +150,10 @@ extension AddTodo: UITextViewDelegate {
         textView.textAlignment = .center
         alignTextVerticallyInContainer()
         
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return delegate?.addTodoShouldBecomeFirstResponder() ?? false
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

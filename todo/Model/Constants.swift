@@ -16,4 +16,7 @@ struct Constants {
     static let DetailTodoCellIdentifier: String = "TodoCell"
     static let TagCellIdentifier: String = "TagCell"
     static let TagIdentifier: String = "#"
+    static let completedTodoSystemImageName = "checkmark.circle.fill"
+    static let notCompletedTodoSystemImageName = "circle"
+    static let defaultAnimationDuration = 0.25
 }
