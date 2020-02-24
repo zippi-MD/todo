@@ -29,6 +29,9 @@ class TodoDatePicker: UIView {
     @IBOutlet private weak var cancelActionBackground: UIView!
     @IBOutlet private weak var todoDatePicker: UIDatePicker!
     
+    @IBOutlet weak var cancelActionLabel: UILabel!
+    @IBOutlet weak var selectActionLabel: UILabel!
+    
     private var actionView: [UIView]?
     
     weak var delegate: TodoDatePickerDelegate?
@@ -51,6 +54,7 @@ class TodoDatePicker: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         setupActionsCornerRadius()
+        localizeActionButtons()
         addGestureRecognizerToActions()
         actionView = [acceptActionBackground, cancelActionBackground]
         updateUIForStyle(style: traitCollection.userInterfaceStyle)
@@ -59,6 +63,11 @@ class TodoDatePicker: UIView {
     private func setupActionsCornerRadius(){
         acceptActionBackground.layer.cornerRadius = Constants.TodoCornerRadius
         cancelActionBackground.layer.cornerRadius = Constants.TodoCornerRadius
+    }
+    
+    private func localizeActionButtons(){
+        cancelActionLabel.text = NSLocalizedString("cancel_action", comment: "Cancel Date Picker Action")
+        selectActionLabel.text = NSLocalizedString("select_action", comment: "Select Date Picker Action")
     }
     
     private func addGestureRecognizerToActions(){
