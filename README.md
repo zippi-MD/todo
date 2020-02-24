@@ -1,4 +1,4 @@
-# #Todo  ![](ReadmeAssets/logo.png)
+# #Todo 
 
 *#Todo* is a simple reimplementation of a clasic todo list, but with some features to make it intuitive and easy to use. It was born from the idea of creating a replacement for the confusing and unintuitive todo lists already available on the Apple App Store.
 
@@ -14,6 +14,11 @@ Each tag will be given a color, for better and easier organization.
 ![](ReadmeAssets/tags.gif)
 ![](ReadmeAssets/tags2.gif)
 
+## Localization 🌎
+#Todo is localized to work perfectly on english and spanish.
+
+![](ReadmeAssets/localization_english.gif)
+![](ReadmeAssets/localization_spanish.gif)
 
 ## iCloud Syncronization ☁️
 #Todo uses the power of [iCloud](https://developer.apple.com/icloud/) to instantly and securely syncronize the user information between their Apple ecosystem.
@@ -36,12 +41,6 @@ Use #Todo as you want! 🙌🏻
 #Todo supports all the orientations and sizes an application can take on iPadOS
 
 ![](ReadmeAssets/splitView.gif)
-
-## Localization 🌎
-#Todo is localized to work perfectly on english and spanish.
-
-![](ReadmeAssets/localization_english.gif)
-![](ReadmeAssets/localization_spanish.gif)
 
 ## Taptic Feedback 📳
 #Todo uses the Taptic Engine available on every iPhone since the iPhone 7 to give the user an inmersive expericence by providing specific vibrations for the different actions in the app.
