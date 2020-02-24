@@ -32,6 +32,8 @@
 		D49F0C2423CD8A3C004B4910 /* KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */; };
 		D4A7D04E23C9323E001C8E37 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7D04D23C9323E001C8E37 /* AttributedString.swift */; };
 		D4B557A223FD9C0100453865 /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B557A123FD9C0100453865 /* HapticFeedbackManager.swift */; };
+		D4B69FA024023FEA007CC6C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B69FA224023FEA007CC6C6 /* Localizable.strings */; };
+		D4B69FA524024288007CC6C6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B69FA424024288007CC6C6 /* Enums.swift */; };
 		D4B9E0C123E903AE004B2735 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9E0C023E903AE004B2735 /* Colors.swift */; };
 		D4B9E0C323E91C5D004B2735 /* TodoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */; };
 		D4BB4D6223F9AE98004E31D2 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */; };
@@ -75,6 +77,9 @@
 		D49F0C2323CD8A3C004B4910 /* KeyboardEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEvents.swift; sourceTree = "<group>"; };
 		D4A7D04D23C9323E001C8E37 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D4B557A123FD9C0100453865 /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
+		D4B69FA124023FEA007CC6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B69FA3240240CC007CC6C6 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4B69FA424024288007CC6C6 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D4B9E0C023E903AE004B2735 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoConfiguration.swift; sourceTree = "<group>"; };
 		D4BB4D6023F9AE98004E31D2 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +168,8 @@
 				D43C395A23C4557200560812 /* Constants.swift */,
 				D4B9E0C223E91C5D004B2735 /* TodoConfiguration.swift */,
 				D4B557A123FD9C0100453865 /* HapticFeedbackManager.swift */,
+				D4B69FA224023FEA007CC6C6 /* Localizable.strings */,
+				D4B69FA424024288007CC6C6 /* Enums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"es-419",
 			);
 			mainGroup = D482DF83239E0DC700C18B82;
 			productRefGroup = D482DF8D239E0DC700C18B82 /* Products */;
@@ -350,6 +358,7 @@
 				D43C395023C448C000560812 /* TodoTagTableViewHeader.xib in Resources */,
 				D4ED92D123CE2DA400894E90 /* TodoDatePicker.xib in Resources */,
 				D4ED92D723CED6B100894E90 /* HeaderView.xib in Resources */,
+				D4B69FA024023FEA007CC6C6 /* Localizable.strings in Resources */,
 				D482DF99239E0DC800C18B82 /* Assets.xcassets in Resources */,
 				D482DF97239E0DC700C18B82 /* Main.storyboard in Resources */,
 				D4BB4D6323F9AE98004E31D2 /* TodoTableViewCell.xib in Resources */,
@@ -365,6 +374,7 @@
 			files = (
 				D4ED92E123D01B7700894E90 /* TodoWithTagAndDateTableViewCell.swift in Sources */,
 				D43C395823C452B000560812 /* TodoTagTableViewCell.swift in Sources */,
+				D4B69FA524024288007CC6C6 /* Enums.swift in Sources */,
 				D4ED92D923CED85D00894E90 /* HeaderView.swift in Sources */,
 				D48CE54123C5A2C400BD90E4 /* TodosDetailViewController.swift in Sources */,
 				D4BB4D6223F9AE98004E31D2 /* TodoTableViewCell.swift in Sources */,
@@ -409,6 +419,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		D4B69FA224023FEA007CC6C6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4B69FA124023FEA007CC6C6 /* en */,
+				D4B69FA3240240CC007CC6C6 /* es-419 */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -416,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -476,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

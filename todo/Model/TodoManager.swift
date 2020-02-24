@@ -9,9 +9,9 @@
 import Foundation
 
 enum SortOptions: String {
-    case ByTag = "By #'s"
-    case ByDateCreated = "Created"
-    case ByDateScheduled = "Scheduled"
+    case ByTag = "segment_tags_option"
+    case ByDateCreated = "segment_created_option"
+    case ByDateScheduled = "segment_scheduled_option"
 }
 
 enum FocusOptions {
@@ -27,7 +27,6 @@ protocol TodoManagerDelegate: class {
 class TodoManager {
     
     static let sharedInstance = TodoManager()
-    
     weak var detailDelegate: TodoManagerDelegate?
     weak var masterDelegate: TodoManagerDelegate?
     var sortTodosBy: SortOptions = .ByTag
@@ -80,7 +79,7 @@ class TodoManager {
     private func getTodosTags() {
         todosTags.removeAll(keepingCapacity: true)
         for todo in todos {
-            let tag = todo.tagName ?? "#Something"
+            let tag = todo.tagName ?? Constants.somethingTag
             todosTags.insert(tag)
         
             if let _ = todosByTag[tag] {
@@ -145,11 +144,11 @@ class TodoManager {
                 }
             }
             else {
-                if let _ = todosSortedByTagAndDateScheduled["#Something"] {
-                    todosSortedByTagAndDateScheduled["#Something"]?.append(todo)
+                if let _ = todosSortedByTagAndDateScheduled[Constants.somethingTag] {
+                    todosSortedByTagAndDateScheduled[Constants.somethingTag]?.append(todo)
                 }
                 else {
-                    todosSortedByTagAndDateScheduled["#Something"] = [todo]
+                    todosSortedByTagAndDateScheduled[Constants.somethingTag] = [todo]
                 }
             }
         }
@@ -165,11 +164,11 @@ class TodoManager {
                 }
             }
             else {
-                if let _ = todosSortedByTagAndDateCreated["#Something"] {
-                    todosSortedByTagAndDateCreated["#Something"]?.append(todo)
+                if let _ = todosSortedByTagAndDateCreated[Constants.somethingTag] {
+                    todosSortedByTagAndDateCreated[Constants.somethingTag]?.append(todo)
                 }
                 else {
-                    todosSortedByTagAndDateCreated["#Something"]?.append(todo)
+                    todosSortedByTagAndDateCreated[Constants.somethingTag]?.append(todo)
                 }
             }
         }
@@ -277,6 +276,9 @@ class TodoManager {
     
     func getColorForTag(_ tag: String) -> TagBackgroundColors? {
         if todosTags.contains(tag), let tagColor = todosByTag[tag]?.first?.tagColor {
+            if tag == NSLocalizedString("something_tag", comment: "Something Tag") {
+                return TagBackgroundColors.TagPink1
+            }
             return TagBackgroundColors(rawValue: tagColor)
         }
         else {
