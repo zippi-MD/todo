@@ -426,7 +426,10 @@ extension TodosDetailViewController: TodoDatePickerDelegate {
 //MARK: -Header Actions Delegate
 extension TodosDetailViewController: HeaderViewDelegate {
     func addActionSelected(_ tag: String) {
-        addTodoView.setInitialTagValueWith("\(tag) ")
+        if tag != Constants.somethingTag {
+            addTodoView.setInitialTagValueWith("\(tag) ")
+        }
+        
         addTodoButtonTapped(nil)
     }
     
