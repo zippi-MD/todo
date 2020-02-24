@@ -12,12 +12,11 @@ With #Todo you can use Tags to separate and organize your todos. While you are w
 Each tag will be given a color, for better and easier organization.
 
 ![](ReadmeAssets/tags.gif)
+![](ReadmeAssets/tags2.gif)
 
 
 ## iCloud Syncronization ☁️
 #Todo uses the power of [iCloud](https://developer.apple.com/icloud/) to instantly and securely syncronize the user information between their Apple ecosystem.
-
-![](ReadmeAssets/icloudSync.gif)
 
 ## Dark Mode 🔲
 Using the latest technologies available in iOS 13 and MacOS 10.15, the aplication can show a different interface for [light and dark mode](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/).
@@ -41,7 +40,8 @@ Use #Todo as you want! 🙌🏻
 ## Localization 🌎
 #Todo is localized to work perfectly on english and spanish.
 
-![](ReadmeAssets/localization.gif)
+![](ReadmeAssets/localization_english.gif)
+![](ReadmeAssets/localization_spanish.gif)
 
 ## Taptic Feedback 📳
 #Todo uses the Taptic Engine available on every iPhone since the iPhone 7 to give the user an inmersive expericence by providing specific vibrations for the different actions in the app.
