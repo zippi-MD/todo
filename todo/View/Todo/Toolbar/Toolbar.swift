@@ -22,6 +22,11 @@ class Toolbar: UIView {
     @IBOutlet weak var scheduleBackgroundView: UIView!
     @IBOutlet weak var discardBackgorundView: UIView!
     
+    @IBOutlet weak var discardOptionLabel: UILabel!
+    @IBOutlet weak var scheduleOptionLabel: UILabel!
+    @IBOutlet weak var addOptionLabel: UILabel!
+    
+    
     var actionView: [UIView]?
     
     weak var delegate: ToolbarDelegate?
@@ -45,6 +50,7 @@ class Toolbar: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         setupActionsCornerRadius()
+        localizeToolbarOptions()
         actionView = [addBackgroundView, scheduleBackgroundView, discardBackgorundView]
         addGestureRecognizerToActions()
         updateUIForStyle(style: traitCollection.userInterfaceStyle)
@@ -65,6 +71,12 @@ class Toolbar: UIView {
         
         let discardTap = UITapGestureRecognizer(target: self, action: #selector(discardActionSelected))
         discardBackgorundView.addGestureRecognizer(discardTap)
+    }
+    
+    func localizeToolbarOptions(){
+        discardOptionLabel.text = NSLocalizedString("add_todo_discard_option", comment: "Toolbar Discard Option")
+        scheduleOptionLabel.text = NSLocalizedString("add_todo_schedule_option", comment: "Toolbar Schedule Option")
+        addOptionLabel.text = NSLocalizedString("add_todo_add_option", comment: "Toolbar Add Option")
     }
 
 }

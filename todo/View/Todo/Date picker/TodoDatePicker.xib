@@ -8,12 +8,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodoDatePicker" customModule="todo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodoDatePicker" customModule="_Todo" customModuleProvider="target">
             <connections>
                 <outlet property="acceptActionBackground" destination="BZ1-7M-ZYc" id="rgg-gv-FEd"/>
                 <outlet property="actionsBackgroundView" destination="iJa-x4-POf" id="ypt-Cj-m7t"/>
                 <outlet property="cancelActionBackground" destination="G1R-dR-d41" id="MhM-0O-PhC"/>
+                <outlet property="cancelActionLabel" destination="lLb-1l-d77" id="x6s-OU-pCs"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="l4j-Le-MiL"/>
+                <outlet property="selectActionLabel" destination="y9a-41-kQK" id="j7b-Af-his"/>
                 <outlet property="todoDatePicker" destination="tcW-hz-N9w" id="jNx-pS-Nsg"/>
             </connections>
         </placeholder>

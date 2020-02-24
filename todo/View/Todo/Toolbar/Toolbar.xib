@@ -11,9 +11,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Toolbar" customModule="_Todo" customModuleProvider="target">
             <connections>
                 <outlet property="addBackgroundView" destination="Xh0-zl-4Vb" id="Eqm-yF-xxU"/>
+                <outlet property="addOptionLabel" destination="eba-cH-MoQ" id="7FF-mm-TfR"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="lWp-LC-79O"/>
                 <outlet property="discardBackgorundView" destination="joX-9e-0Vb" id="4vv-qA-EEp"/>
+                <outlet property="discardOptionLabel" destination="WLB-fV-6g8" id="RUo-rL-mou"/>
                 <outlet property="scheduleBackgroundView" destination="R9D-hA-DmC" id="wIM-7C-Pxv"/>
+                <outlet property="scheduleOptionLabel" destination="oSp-so-lgF" id="Tja-Rb-nfc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
