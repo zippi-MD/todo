@@ -276,6 +276,9 @@ class TodoManager {
     
     func getColorForTag(_ tag: String) -> TagBackgroundColors? {
         if todosTags.contains(tag), let tagColor = todosByTag[tag]?.first?.tagColor {
+            if tag == NSLocalizedString("something_tag", comment: "Something Tag") {
+                return TagBackgroundColors.TagPink1
+            }
             return TagBackgroundColors(rawValue: tagColor)
         }
         else {
